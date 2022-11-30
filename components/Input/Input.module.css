@@ -1,0 +1,22 @@
+.input {
+	background: var(--white);
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+	border-radius: 5px;
+	border: unset;
+	padding: 7px 15px;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 22px;
+	color: var(--black);
+	font-family: var(--font-family);
+	font-style: normal;
+	width: 220px;
+}
+
+.input:focus-visible {
+	outline: 2px solid var(--primary);
+}
+
+.input::placeholder {
+	color: --gray-dark;
+}

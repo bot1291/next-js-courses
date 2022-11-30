@@ -1,0 +1,325 @@
+.product {
+	display: grid;
+	padding: 30px;
+	grid-template-columns:
+		[start] 70px [logoend] 30px [titlestart] calc(50% - 100px)
+		[middle] 1fr [pricestart] auto [priceend] 40px [creditstart] auto [creditend] 40px [ratestart] auto [end];
+	margin-top: 30px;
+}
+
+.logo {
+	grid-column: start / logoend;
+	grid-row: 1 / span 2;
+}
+
+.title,
+.tags {
+	grid-column: titlestart / middle;
+}
+
+.price,
+.priceTitle {
+	grid-column: pricestart / priceend;
+}
+
+.credit,
+.creditTitle {
+	grid-column: creditstart / creditend;
+}
+
+.rating,
+.rateTitle {
+	grid-column: ratestart / end;
+}
+
+.hr,
+.description,
+.actions {
+	grid-column: start / end;
+}
+
+.feature {
+	grid-column: start / middle;
+}
+
+.advBlock {
+	grid-column: middle / end;
+}
+
+.logo img {
+	border-radius: 5px;
+}
+
+.title {
+	font-weight: 600;
+	font-size: 20px;
+	line-height: 27px;
+	align-self: flex-end;
+}
+
+.price,
+.credit {
+	font-size: 20px;
+	line-height: 27px;
+	align-self: flex-end;
+}
+
+.rating {
+	align-self: flex-end;
+}
+
+.priceTitle,
+.creditTitle,
+.rateTitle {
+	font-weight: 300;
+	font-size: 14px;
+	line-height: 19px;
+}
+
+.month {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+.discount {
+	margin-left: 10px;
+}
+
+.price {
+	display: flex;
+	align-items: center;
+}
+
+.tag {
+	margin-top: 5px;
+}
+
+.description {
+	font-size: 16px;
+	line-height: 24px;
+	margin-bottom: 15px;
+}
+
+.actions > button + button {
+	margin-left: 20px;
+}
+
+.advTitle,
+.advantages,
+.disadvantages {
+	font-size: 16px;
+	line-height: 22px;
+}
+
+.advTitle {
+	margin-bottom: 5px;
+	font-weight: 700;
+}
+
+.advantages,
+.disadvantages {
+	border-left: 3px solid var(--green);
+	border-radius: 2px;
+	padding-left: 15px;
+}
+
+.advantages {
+	border-left: 3px solid var(--green);
+}
+
+.disadvantages {
+	border-left: 3px solid var(--red);
+	margin-top: 20px;
+}
+
+.characteristics {
+	display: grid;
+	grid-template-columns: auto 1fr auto;
+	margin-right: 60px;
+	gap: 15px;
+	font-size: 16px;
+	line-height: 32px;
+}
+
+.dots {
+	border-bottom: 1px dotted var(--gray-light);
+	margin-bottom: 11px;
+}
+
+.characteristicsName {
+	font-weight: 700;
+}
+
+.characteristicsValue {
+	font-weight: 400;
+}
+
+.opened {
+	max-height: auto;
+	padding: 30px;
+}
+
+.closed {
+	overflow: hidden;
+	max-height: 0;
+	padding: 0;
+}
+
+.reviews {
+}
+
+@media screen and (max-width: 1340px) {
+	.product {
+		grid-template-columns: 70px 30px auto 40px auto 40px 1fr;
+		grid-template-areas:
+			'logo . title title title title title'
+			'logo . tags tags tags tags tags'
+			'price price price . credit . rating'
+			'priceTitle priceTitle priceTitle . creditTitle . rateTitle'
+			'hr hr hr hr hr hr hr'
+			'description description description description description description description'
+			'feature feature feature feature feature feature feature'
+			'advBlock advBlock advBlock advBlock advBlock advBlock advBlock'
+			'hr2 hr2 hr2 hr2 hr2 hr2 hr2'
+			'actions actions actions actions actions actions actions';
+	}
+
+	.logo {
+		grid-area: logo;
+	}
+
+	.title {
+		grid-area: title;
+	}
+
+	.tags {
+		margin-bottom: 20px;
+		grid-area: tags;
+	}
+
+	.price {
+		grid-area: price;
+	}
+
+	.credit {
+		grid-area: credit;
+	}
+
+	.rating {
+		grid-area: rating;
+	}
+
+	.priceTitle {
+		grid-area: priceTitle;
+	}
+
+	.creditTitle {
+		grid-area: creditTitle;
+	}
+
+	.rateTitle {
+		grid-area: rateTitle;
+	}
+
+	.hr {
+		grid-area: hr;
+	}
+
+	.description {
+		grid-area: description;
+	}
+
+	.feature {
+		grid-area: feature;
+		margin-bottom: 20px;
+	}
+
+	.advBlock {
+		grid-area: advBlock;
+	}
+
+	.hr2 {
+		grid-area: hr2;
+	}
+
+	.actions {
+		grid-area: actions;
+	}
+}
+
+@media screen and (max-width: 640px) {
+	.product {
+		grid-template-columns: 70px 30px 1fr;
+		grid-template-areas:
+			'logo . title'
+			'logo . tags'
+			'priceTitle priceTitle price'
+			'creditTitle'
+			'rateTitle rateTitle rating'
+			'hr hr hr'
+			'description description description'
+			'feature feature feature'
+			'advBlock advBlock advBlock'
+			'hr2 hr2 hr2'
+			'actions actions actions';
+	}
+
+	.price {
+		margin-bottom: 10px;
+	}
+
+	.credit {
+		margin-bottom: 10px;
+		margin-right: 15px;
+	}
+
+	.rating {
+		margin-bottom: 10px;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.product {
+		padding: 15px;
+		grid-template-columns: 1fr;
+		grid-template-areas:
+			'logo'
+			'title'
+			'tags'
+			'price'
+			'priceTitle'
+			'credit'
+			'creditTitle'
+			'rating'
+			'rateTitle'
+			'hr'
+			'description'
+			'feature'
+			'advBlock'
+			'hr2'
+			'actions';
+	}
+
+	.credit {
+		margin-right: unset;
+		margin-top: 10px;
+	}
+
+	.rating {
+		margin-top: 10px;
+	}
+
+	.opened {
+		max-height: auto;
+		padding: 15px;
+	}
+
+	.actions {
+		display: flex;
+		flex-direction: column;
+	}
+	
+	.actions > button + button {
+		margin: unset;
+	}
+}

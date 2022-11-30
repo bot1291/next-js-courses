@@ -1,0 +1,9 @@
+.card {
+	background-color: var(--white);
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+	border-radius: 5px;
+}
+
+.blue {
+	background-color: #f9f8ff;
+}
