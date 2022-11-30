@@ -9,3 +9,11 @@
 .editable {
 	cursor: pointer;
 }
+
+.ratingWrapper {
+	position: relative;
+}
+
+.errorMessage {
+	
+}

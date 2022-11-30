@@ -57,6 +57,10 @@
 	padding-left: 36px;
 }
 
+.closed {
+	display: none;
+}
+
 @media screen and (max-width: 1150px) {
 	.reviewForm {
 		grid-template-columns: [start] 1fr 1fr [end];

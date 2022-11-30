@@ -8,6 +8,7 @@ import { Button } from '../Button/Button';
 import CrossIcon from './cross.svg';
 import { useForm, Controller } from 'react-hook-form';
 import { IReviewForm } from './ReviewForm.interface';
+import { useState } from 'react';
 
 export const ReviewForm = ({
 	productId,
@@ -18,8 +19,9 @@ export const ReviewForm = ({
 		register,
 		control,
 		handleSubmit,
-		formState: { errors },
+		formState: { errors, isSubmitSuccessful, isValid },
 	} = useForm<IReviewForm>();
+	const [isClosed, setIsClosed] = useState<boolean>(true);
 
 	const onSubmit = (data: IReviewForm) => {
 		console.log(data);
@@ -52,8 +54,15 @@ export const ReviewForm = ({
 						<Controller
 							name="rating"
 							control={control}
-							render={({ field }) => (
+							rules={{
+								required: {
+									value: true,
+									message: 'Поставьте оценку',
+								},
+							}}
+							render={({ field, formState: { errors } }) => (
 								<Rating
+									error={errors.rating}
 									isEditable
 									setRating={field.onChange}
 									ref={field.ref}
@@ -75,7 +84,14 @@ export const ReviewForm = ({
 					placeholder="Текст отзыва"
 				/>
 				<div className={styles.submit}>
-					<Button className={styles.button} appearance="primary">
+					<Button
+						onClick={() =>
+							setIsClosed(!isSubmitSuccessful && !isValid)
+						}
+						disabled={isSubmitSuccessful}
+						className={styles.button}
+						appearance="primary"
+					>
 						Отправить
 					</Button>
 					<span className={styles.moderation}>
@@ -84,9 +100,18 @@ export const ReviewForm = ({
 					</span>
 				</div>
 			</div>
-			<div className={styles.success}>
+			<div
+				className={cn(styles.success, {
+					[styles.closed]: isClosed,
+				})}
+			>
 				<div className={styles.successTitle}>Ваш отзыв отправлен</div>
-				<CrossIcon className={styles.cross} />
+				<span
+					onClick={() => setIsClosed(true)}
+					className={styles.cross}
+				>
+					<CrossIcon />
+				</span>
 				<div className={styles.successText}>
 					Спасибо, Ваш отзыв будет опубликован после проверки.
 				</div>

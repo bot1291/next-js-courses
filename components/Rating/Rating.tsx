@@ -8,6 +8,7 @@ import { ForwardedRef, forwardRef } from 'react';
 export const Rating = forwardRef(
 	(
 		{
+			error,
 			rating,
 			isEditable = false,
 			setRating,
@@ -69,10 +70,13 @@ export const Rating = forwardRef(
 		}, [rating]);
 
 		return (
-			<div ref={ref} className={className} {...props}>
+			<div ref={ref} className={cn(className, styles.ratingWrapper)} {...props}>
 				{ratingArray.map((rate, index) => (
 					<span key={index}>{rate}</span>
 				))}
+				{error && (
+					<span className={styles.errorMessage}>{error.message}</span>
+				)}
 			</div>
 		);
 	}
