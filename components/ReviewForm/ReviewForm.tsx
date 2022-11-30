@@ -14,7 +14,12 @@ export const ReviewForm = ({
 	className,
 	...props
 }: ReviewFormProps) => {
-	const { register, control, handleSubmit } = useForm<IReviewForm>();
+	const {
+		register,
+		control,
+		handleSubmit,
+		formState: { errors },
+	} = useForm<IReviewForm>();
 
 	const onSubmit = (data: IReviewForm) => {
 		console.log(data);
@@ -23,9 +28,21 @@ export const ReviewForm = ({
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
 			<div className={cn(className, styles.reviewForm)} {...props}>
-				<Input {...register('name')} placeholder="Имя" />
 				<Input
-					{...register('title')}
+					error={errors.name}
+					{...register('name', {
+						required: { value: true, message: 'Заполните имя' },
+					})}
+					placeholder="Имя"
+				/>
+				<Input
+					error={errors.title}
+					{...register('title', {
+						required: {
+							value: true,
+							message: 'Напишите заголовок',
+						},
+					})}
 					className={styles.titleReview}
 					placeholder="Заголовок отзыва"
 				/>
@@ -39,6 +56,7 @@ export const ReviewForm = ({
 								<Rating
 									isEditable
 									setRating={field.onChange}
+									ref={field.ref}
 									rating={field.value}
 								/>
 							)}
@@ -51,7 +69,7 @@ export const ReviewForm = ({
 					placeholder="Текст отзыва"
 				/>
 				<div className={styles.submit}>
-					<Button appearance="primary">Отправить</Button>
+					<Button className={styles.button} appearance="primary">Отправить</Button>
 					<span className={styles.moderation}>
 						* Перед публикацией отзыв пройдет предварительную
 						модерацию и проверку
