@@ -9,6 +9,7 @@ import {
 import { ProductModel } from '../../interfaces/product.interface';
 import { withLayout } from '../../layout/Layout';
 import { TopPageComponent } from '../../page-components';
+import { API } from '../../helpers/api';
 
 function TopPage({ firstCategory, page, products }: TopPageProps): JSX.Element {
 	return (
@@ -26,16 +27,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
 	let paths: string[] = [];
 
 	for (const m of firstLevelMenu) {
-		const menu: MenuItem[] = await fetch(
-			`${process.env.NEXT_PUBLIC_DOMAIN}/api/top-page/find`,
-			{
-				method: 'POST',
-				body: JSON.stringify({ firstCategory: m.id }),
-				headers: {
-					'Content-type': 'application/json; charset=UTF-8',
-				},
-			}
-		)
+		const menu: MenuItem[] = await fetch(API.topPage.find, {
+			method: 'POST',
+			body: JSON.stringify({ firstCategory: m.id }),
+			headers: {
+				'Content-type': 'application/json; charset=UTF-8',
+			},
+		})
 			.then((response) => response.json())
 			.catch((e: Error) => {
 				console.log(e.message);
@@ -70,16 +68,13 @@ export const getStaticProps: GetStaticProps<TopPageProps> = async ({
 	}
 
 	try {
-		const menu: MenuItem[] = await fetch(
-			`${process.env.NEXT_PUBLIC_DOMAIN}/api/top-page/find`,
-			{
-				method: 'POST',
-				body: JSON.stringify({ firstCategory: firstCategoryItem.id }),
-				headers: {
-					'Content-type': 'application/json; charset=UTF-8',
-				},
-			}
-		).then((response) => response.json());
+		const menu: MenuItem[] = await fetch(API.topPage.find, {
+			method: 'POST',
+			body: JSON.stringify({ firstCategory: firstCategoryItem.id }),
+			headers: {
+				'Content-type': 'application/json; charset=UTF-8',
+			},
+		}).then((response) => response.json());
 
 		if (menu.length === 0) {
 			return {
@@ -88,26 +83,23 @@ export const getStaticProps: GetStaticProps<TopPageProps> = async ({
 		}
 
 		const page: TopPageModel = await fetch(
-			`${process.env.NEXT_PUBLIC_DOMAIN}/api/top-page/byAlias/${params.alias}`,
+			API.topPage.byAlias.alias(params.alias),
 			{
 				method: 'GET',
 				credentials: 'include',
 			}
 		).then((response) => response.json());
 
-		const products: ProductModel[] = await fetch(
-			`${process.env.NEXT_PUBLIC_DOMAIN}/api/product/find`,
-			{
-				method: 'POST',
-				body: JSON.stringify({
-					category: page.category,
-					limit: 10,
-				}),
-				headers: {
-					'Content-type': 'application/json; charset=UTF-8',
-				},
-			}
-		).then((response) => response.json());
+		const products: ProductModel[] = await fetch(API.product.find, {
+			method: 'POST',
+			body: JSON.stringify({
+				category: page.category,
+				limit: 10,
+			}),
+			headers: {
+				'Content-type': 'application/json; charset=UTF-8',
+			},
+		}).then((response) => response.json());
 
 		return {
 			props: {

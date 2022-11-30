@@ -70,7 +70,13 @@ export const Rating = forwardRef(
 		}, [rating]);
 
 		return (
-			<div ref={ref} className={cn(className, styles.ratingWrapper)} {...props}>
+			<div
+				ref={ref}
+				className={cn(className, styles.ratingWrapper, {
+					[styles.isError]: error,
+				})}
+				{...props}
+			>
 				{ratingArray.map((rate, index) => (
 					<span key={index}>{rate}</span>
 				))}

@@ -1,5 +1,6 @@
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
 import { ParsedUrlQuery } from 'querystring';
+import { API } from '../../helpers/api';
 import { firstLevelMenu } from '../../helpers/helpers';
 import { MenuItem } from '../../interfaces/menu.interface';
 import { withLayout } from '../../layout/Layout';
@@ -34,16 +35,13 @@ export const getStaticProps: GetStaticProps<TypeProps> = async ({
 		};
 	}
 
-	const menu: MenuItem[] = await fetch(
-		`${process.env.NEXT_PUBLIC_DOMAIN}/api/top-page/find`,
-		{
-			method: 'POST',
-			body: JSON.stringify({ firstCategory: firstCategoryItem.id }),
-			headers: {
-				'Content-type': 'application/json; charset=UTF-8',
-			},
-		}
-	)
+	const menu: MenuItem[] = await fetch(API.topPage.find, {
+		method: 'POST',
+		body: JSON.stringify({ firstCategory: firstCategoryItem.id }),
+		headers: {
+			'Content-type': 'application/json; charset=UTF-8',
+		},
+	})
 		.then((response) => response.json())
 		.catch((e: Error) => {
 			console.log(e.message);
