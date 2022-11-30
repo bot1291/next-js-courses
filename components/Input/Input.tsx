@@ -9,18 +9,18 @@ export const Input = forwardRef(
 		ref: ForwardedRef<HTMLInputElement>
 	) => {
 		return (
-			<>
-				<div className={styles.inputWrapper}>
-					<input
-						ref={ref}
-						{...props}
-						className={cn(className, styles.input, {
-							[styles.error]: error,
-						})}
-					/>
-					{error && <span className={styles.errorMessage}>{error.message}</span>}
-				</div>
-			</>
+			<div className={cn(className, styles.inputWrapper)}>
+				<input
+					ref={ref}
+					{...props}
+					className={cn(styles.input, {
+						[styles.error]: error,
+					})}
+				/>
+				{error && (
+					<span className={styles.errorMessage}>{error.message}</span>
+				)}
+			</div>
 		);
 	}
 );

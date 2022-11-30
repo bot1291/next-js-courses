@@ -64,12 +64,20 @@ export const ReviewForm = ({
 					</span>
 				</div>
 				<TextArea
-					{...register('description')}
+					error={errors.description}
+					{...register('description', {
+						required: {
+							value: true,
+							message: 'Введите текст отзыва',
+						},
+					})}
 					className={styles.textarea}
 					placeholder="Текст отзыва"
 				/>
 				<div className={styles.submit}>
-					<Button className={styles.button} appearance="primary">Отправить</Button>
+					<Button className={styles.button} appearance="primary">
+						Отправить
+					</Button>
 					<span className={styles.moderation}>
 						* Перед публикацией отзыв пройдет предварительную
 						модерацию и проверку

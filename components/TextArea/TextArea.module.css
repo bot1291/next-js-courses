@@ -1,4 +1,4 @@
-.inputArea {
+.textarea {
 	background: var(--white);
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
 	border-radius: 5px;
@@ -10,12 +10,28 @@
 	color: var(--black);
 	font-family: var(--font-family);
 	font-style: normal;
+	width: 100%;
 }
 
-.inputArea:focus-visible {
+.textarea:focus-visible {
 	outline: 2px solid var(--primary);
 }
 
-.inputArea::placeholder {
+.textarea::placeholder {
 	color: --gray-dark;
+}
+
+.textareaWrapper {
+	position: relative;
+}
+
+.errorMessage {
+	position: absolute;
+	bottom: -16px;
+	left: 8px;
+	color: var(--red);
+}
+
+.error:focus-visible {
+	outline: 2px solid var(--red);
 }
