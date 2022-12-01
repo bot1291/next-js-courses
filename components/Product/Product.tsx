@@ -9,16 +9,25 @@ import { Tag } from '../Tag/Tag';
 import { Button } from '../Button/Button';
 import { decOfNum, priceRu } from '../../helpers/helpers';
 import { Divider } from '../Divider/Divider';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Review } from '../Review/Review';
 import { ReviewForm } from '../ReviewForm/ReviewForm';
 
 export const Product = ({ product, className, ...props }: ProductProps) => {
 	const [isReviewOpened, setIsReviewOpened] = useState<boolean>(false);
+	const reviewRef = useRef<HTMLDivElement>(null);
+
+	const scrollToReview = () => {
+		product.reviews.length && setIsReviewOpened(true);
+		reviewRef.current?.scrollIntoView({
+			behavior: 'smooth',
+			block: 'start',
+		});
+	};
 
 	return (
-		<>
-			<Card className={cn(className, styles.product)}>
+		<div className={className} {...props}>
+			<Card className={cn(styles.product)}>
 				<div className={styles.logo}>
 					<Image
 						width="70"
@@ -54,13 +63,19 @@ export const Product = ({ product, className, ...props }: ProductProps) => {
 				</div>
 				<div className={styles.priceTitle}>цена</div>
 				<div className={styles.creditTitle}>в кредит</div>
-				<div className={styles.rateTitle}>
-					{product.reviewCount}{' '}
-					{decOfNum(product.reviewCount, [
-						'отзыв',
-						'отзыва',
-						'отзывов',
-					])}
+				<div className={cn(styles.rateTitle, {
+					[styles.rateTitleColor]: product.reviews.length
+				})}>
+					<a href="#ref" onClick={scrollToReview}>
+						<span className={styles.rateCount}>
+							{product.reviewCount}
+						</span>
+						{decOfNum(product.reviewCount, [
+							'отзыв',
+							'отзыва',
+							'отзывов',
+						])}
+					</a>
 				</div>
 				<Divider className={styles.hr} />
 				<div className={styles.description}>{product.description}</div>
@@ -94,15 +109,15 @@ export const Product = ({ product, className, ...props }: ProductProps) => {
 				<Divider className={cn(styles.hr, styles.hr2)} />
 				<div className={styles.actions}>
 					<Button>Узнать подробнее</Button>
-					{!!product.reviews.length && (
-						<Button
-							onClick={() => setIsReviewOpened(!isReviewOpened)}
-							arrow={isReviewOpened ? 'down' : 'right'}
-							appearance="ghost"
-						>
-							Читать отзывы
-						</Button>
-					)}
+					<Button
+						onClick={() => setIsReviewOpened(!isReviewOpened)}
+						arrow={isReviewOpened ? 'down' : 'right'}
+						appearance="ghost"
+					>
+						{product.reviews.length
+							? 'Читать отзывы'
+							: 'Оставить первый отзыв'}
+					</Button>
 				</div>
 			</Card>
 			<Card
@@ -111,6 +126,7 @@ export const Product = ({ product, className, ...props }: ProductProps) => {
 					[styles.opened]: isReviewOpened,
 					[styles.closed]: !isReviewOpened,
 				})}
+				ref={reviewRef}
 			>
 				{product.reviews.map((r) => (
 					<div key={r._id}>
@@ -120,6 +136,6 @@ export const Product = ({ product, className, ...props }: ProductProps) => {
 				))}
 				<ReviewForm productId={product._id} />
 			</Card>
-		</>
+		</div>
 	);
 };

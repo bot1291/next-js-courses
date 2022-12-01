@@ -22,6 +22,7 @@ export const ReviewForm = ({
 		control,
 		handleSubmit,
 		formState: { errors, isValid },
+		reset,
 	} = useForm<IReviewForm>();
 	const [isClosed, setIsClosed] = useState<boolean>(true);
 	const [isSuccess, setIsSuccesst] = useState<boolean>(false);
@@ -35,6 +36,9 @@ export const ReviewForm = ({
 			);
 			if (data.message) {
 				setIsSuccesst(true);
+				reset();
+			} else {
+				setIsFailed('Что-то пошло не так');
 			}
 			console.log(data);
 		} catch (error) {
@@ -137,15 +141,15 @@ export const ReviewForm = ({
 				})}
 			>
 				<div className={styles.failedTitle}>
-					Произошла ошибка, повторите запрос через время
+					Произошла ошибка
 				</div>
 				<span
 					onClick={() => setIsClosed(true)}
 					className={styles.cross}
 				>
-					<CrossIcon />
+					<CrossIcon className={styles.closeFailed} />
 				</span>
-				<div className={styles.failedText}>{isFailed}</div>
+				<div className={styles.failedText}>Попробуйте обновить страницу</div>
 			</div>
 		</form>
 	);

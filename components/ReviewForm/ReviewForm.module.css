@@ -48,10 +48,15 @@
 }
 
 .failed {
-	background-color: var(--red);
+	background-color: var(--red-light);
 }
 
-.successText, .failedText {
+.closeFailed path {
+	stroke: var(--black);
+}
+
+.successText,
+.failedText {
 	grid-column: start / end;
 }
 
