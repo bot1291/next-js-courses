@@ -321,5 +321,6 @@
 	
 	.actions > button + button {
 		margin: unset;
+		margin-top: 10px;
 	}
 }

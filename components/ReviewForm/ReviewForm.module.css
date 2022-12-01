@@ -21,6 +21,14 @@
 
 .moderation {
 	margin-left: 15px;
+	position: relative;
+}
+
+.moderation:before {
+	position: absolute;
+	left: -10px;
+	top: 0;
+	content: '*';
 }
 
 .rating > span {
@@ -29,7 +37,8 @@
 	gap: 20px;
 }
 
-.success {
+.success,
+.failed {
 	margin-top: 15px;
 	background-color: var(--green-light);
 	padding: 20px;
@@ -38,7 +47,11 @@
 	grid-template-columns: [start] auto [middle] auto [end];
 }
 
-.successText {
+.failed {
+	background-color: var(--red);
+}
+
+.successText, .failedText {
 	grid-column: start / end;
 }
 
@@ -49,6 +62,11 @@
 }
 
 .successTitle {
+	font-weight: 700;
+	white-space: nowrap;
+}
+
+.failedTitle {
 	font-weight: 700;
 }
 

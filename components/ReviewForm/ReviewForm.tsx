@@ -7,8 +7,10 @@ import { TextArea } from '../TextArea/TextArea';
 import { Button } from '../Button/Button';
 import CrossIcon from './cross.svg';
 import { useForm, Controller } from 'react-hook-form';
-import { IReviewForm } from './ReviewForm.interface';
+import { IReviewForm, IReviewSentResponse } from './ReviewForm.interface';
 import { useState } from 'react';
+import axios from 'axios';
+import { API } from '../../helpers/api';
 
 export const ReviewForm = ({
 	productId,
@@ -19,12 +21,27 @@ export const ReviewForm = ({
 		register,
 		control,
 		handleSubmit,
-		formState: { errors, isSubmitSuccessful, isValid },
+		formState: { errors, isValid },
 	} = useForm<IReviewForm>();
 	const [isClosed, setIsClosed] = useState<boolean>(true);
+	const [isSuccess, setIsSuccesst] = useState<boolean>(false);
+	const [isFailed, setIsFailed] = useState<string>('');
 
-	const onSubmit = (data: IReviewForm) => {
-		console.log(data);
+	const onSubmit = async (formData: IReviewForm) => {
+		try {
+			const { data } = await axios.post<IReviewSentResponse>(
+				API.review.createDemo,
+				{ ...formData, productId }
+			);
+			if (data.message) {
+				setIsSuccesst(true);
+			}
+			console.log(data);
+		} catch (error) {
+			if (error instanceof Error) {
+				setIsFailed(error.message);
+			}
+		}
 	};
 
 	return (
@@ -85,24 +102,22 @@ export const ReviewForm = ({
 				/>
 				<div className={styles.submit}>
 					<Button
-						onClick={() =>
-							setIsClosed(!isSubmitSuccessful && !isValid)
-						}
-						disabled={isSubmitSuccessful}
+						onClick={() => setIsClosed(!isSuccess && !isValid)}
+						disabled={isSuccess}
 						className={styles.button}
 						appearance="primary"
 					>
 						Отправить
 					</Button>
 					<span className={styles.moderation}>
-						* Перед публикацией отзыв пройдет предварительную
+						Перед публикацией отзыв пройдет предварительную
 						модерацию и проверку
 					</span>
 				</div>
 			</div>
 			<div
 				className={cn(styles.success, {
-					[styles.closed]: isClosed,
+					[styles.closed]: !isSuccess || isClosed,
 				})}
 			>
 				<div className={styles.successTitle}>Ваш отзыв отправлен</div>
@@ -115,6 +130,22 @@ export const ReviewForm = ({
 				<div className={styles.successText}>
 					Спасибо, Ваш отзыв будет опубликован после проверки.
 				</div>
+			</div>
+			<div
+				className={cn(styles.failed, {
+					[styles.closed]: !isFailed || isSuccess || isClosed,
+				})}
+			>
+				<div className={styles.failedTitle}>
+					Произошла ошибка, повторите запрос через время
+				</div>
+				<span
+					onClick={() => setIsClosed(true)}
+					className={styles.cross}
+				>
+					<CrossIcon />
+				</span>
+				<div className={styles.failedText}>{isFailed}</div>
 			</div>
 		</form>
 	);
