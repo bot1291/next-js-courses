@@ -1,6 +1,6 @@
 import styles from './Menu.module.css';
 import cn from 'classnames';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { AppContext } from '../../context/app.context';
 import { FirstLevelMenuItem, PageItem } from '../../interfaces/menu.interface';
 import Link from 'next/link';
@@ -8,8 +8,15 @@ import { useRouter } from 'next/router';
 import { firstLevelMenu } from '../../helpers/helpers';
 
 export const Menu = () => {
-	const { firstCategory, menu, setMenu } = useContext(AppContext);
+	const { menuDefault, firstCategory, menu, setMenu } =
+		useContext(AppContext);
 	const router = useRouter();
+
+	useEffect(() => {
+		if (menuDefault && setMenu) {
+			setMenu(menuDefault);
+		}
+	}, [setMenu, menuDefault]);
 
 	const openSecondLevel = (secondCategory: string) => {
 		setMenu &&

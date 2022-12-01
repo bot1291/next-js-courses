@@ -6,6 +6,7 @@ export interface IAppContext {
 	menu: MenuItem[];
 	firstCategory: TopLevelCategory;
 	setMenu?: (newMenu: MenuItem[]) => void;
+	menuDefault?: MenuItem[];
 }
 
 export const AppContext = createContext<IAppContext>({
@@ -26,7 +27,7 @@ export const AppContextProvider = ({
 
 	return (
 		<AppContext.Provider
-			value={{ menu: menuState, firstCategory, setMenu }}
+			value={{ menuDefault: menu, menu: menuState, firstCategory, setMenu }}
 		>
 			{children}
 		</AppContext.Provider>
