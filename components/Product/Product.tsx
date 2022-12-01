@@ -63,10 +63,15 @@ export const Product = ({ product, className, ...props }: ProductProps) => {
 				</div>
 				<div className={styles.priceTitle}>цена</div>
 				<div className={styles.creditTitle}>в кредит</div>
-				<div className={cn(styles.rateTitle, {
-					[styles.rateTitleColor]: product.reviews.length
-				})}>
-					<a href="#ref" onClick={scrollToReview}>
+				<div
+					className={cn(styles.rateTitle, {
+						[styles.rateTitleColor]: product.reviews.length,
+					})}
+				>
+					<a
+						href="#ref"
+						onClick={product.reviews.length ? scrollToReview : undefined}
+					>
 						<span className={styles.rateCount}>
 							{product.reviewCount}
 						</span>

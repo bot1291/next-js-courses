@@ -39,11 +39,13 @@ export const ReviewForm = ({
 				reset();
 			} else {
 				setIsFailed('Что-то пошло не так');
+				console.log('Что-то пошло не так');
 			}
 			console.log(data);
 		} catch (error) {
 			if (error instanceof Error) {
 				setIsFailed(error.message);
+				console.log(error.message);
 			}
 		}
 	};
