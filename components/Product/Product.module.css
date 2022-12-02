@@ -165,6 +165,7 @@
 .reviews {
 	overflow: hidden;
 	padding: 30px;
+	height: inherit
 }
 
 @media screen and (max-width: 1340px) {

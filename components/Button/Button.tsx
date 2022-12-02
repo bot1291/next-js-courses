@@ -2,14 +2,15 @@ import { ButtonProps } from './Button.props';
 import styles from './Button.module.css';
 import cn from 'classnames';
 import ArrowIcon from './arrow.svg';
+import { ForwardedRef, forwardRef } from 'react';
 
-export const Button = ({
+export const Button = forwardRef(({
 	appearance = 'primary',
 	arrow = 'none',
 	children,
 	className,
 	...props
-}: ButtonProps): JSX.Element => {
+}: ButtonProps, ref: ForwardedRef<HTMLButtonElement>): JSX.Element => {
 	return (
 		<button
 			className={cn(styles.button, className, {
@@ -17,6 +18,7 @@ export const Button = ({
 				[styles.ghost]: appearance === 'ghost',
 			})}
 			{...props}
+			ref={ref}
 		>
 			{children}
 			{arrow !== 'none' && (
@@ -30,4 +32,6 @@ export const Button = ({
 			)}
 		</button>
 	);
-};
+});
+
+Button.displayName = 'Button';

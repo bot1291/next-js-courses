@@ -32,7 +32,7 @@ export const Up = () => {
 			className={styles.up}
 			onClick={scrollToTop}
 		>
-			<ButtonIcon icon='up' appearance='white' />
+			<ButtonIcon icon='up' appearance='primary' />
 		</motion.div>
 	);
 };

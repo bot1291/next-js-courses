@@ -1,6 +1,6 @@
 import styles from './TopPageComponent.module.css';
 import { TopPageComponentProps } from './TopPageComponent.props';
-import { Adventages, HhData, Htag, Product, Sort, Tag, Up } from '../../components';
+import { Adventages, HhData, Htag, Product, Sort, Tag } from '../../components';
 import { TopLevelCategory } from '../../interfaces/page.interface';
 import { SortEnum } from '../../components/Sort/Sort.props';
 import { useEffect, useReducer } from 'react';

@@ -117,11 +117,12 @@ export const Menu = forwardRef(() => {
 		return pages.map((p) => {
 			return (
 				<motion.div variants={variantsChildren} key={p.alias}>
-					<Link href={`/${route}/${p.alias}`} legacyBehavior >
+					<Link href={`/${route}/${p.alias}`} legacyBehavior>
 						<a
 							className={cn(styles.thirdLevel, {
 								[styles.thirdLevelActive]:
-									`/${route}/${p.alias}` === router.asPath,
+									(`/${route}/${p.alias}` === router.asPath) ||
+									(`/${route}/${p.alias}#ref` === router.asPath),
 							})}
 						>
 							{p.category}

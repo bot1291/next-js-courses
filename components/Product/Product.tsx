@@ -20,7 +20,7 @@ const ProductRef = forwardRef(
 		ref: ForwardedRef<HTMLDivElement>
 	) => {
 		const [isReviewOpened, setIsReviewOpened] = useState<boolean>(false);
-		const reviewRef = useRef<HTMLDivElement>(null);
+		const reviewRef = useRef<HTMLButtonElement>(null);
 
 		const variants = {
 			visible: {
@@ -31,11 +31,13 @@ const ProductRef = forwardRef(
 		};
 
 		const scrollToReview = () => {
+			setTimeout(() => {
+				reviewRef.current?.scrollIntoView({
+					behavior: 'smooth',
+					block: 'start',
+				});
+			}, 50);
 			product.reviews.length && setIsReviewOpened(true);
-			reviewRef.current?.scrollIntoView({
-				behavior: 'smooth',
-				block: 'start',
-			});
 		};
 
 		return (
@@ -141,6 +143,7 @@ const ProductRef = forwardRef(
 					<div className={styles.actions}>
 						<Button>Узнать подробнее</Button>
 						<Button
+							ref={reviewRef}
 							onClick={() => setIsReviewOpened(!isReviewOpened)}
 							arrow={isReviewOpened ? 'down' : 'right'}
 							appearance="ghost"
@@ -157,11 +160,7 @@ const ProductRef = forwardRef(
 					initial="hidden"
 					animate={isReviewOpened ? 'visible' : 'hidden'}
 				>
-					<Card
-						color="blue"
-						className={cn(styles.reviews)}
-						ref={reviewRef}
-					>
+					<Card color="blue" className={cn(styles.reviews)}>
 						{product.reviews.map((r) => (
 							<div key={r._id}>
 								<Review review={r} />
