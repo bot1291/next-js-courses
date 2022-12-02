@@ -23,7 +23,6 @@ export const TopPageComponent = ({
 	const setSort = (sort: SortEnum) => {
 		dispatchSort({ type: sort, payload: [] });
 	};
-
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.title}>
@@ -36,7 +35,7 @@ export const TopPageComponent = ({
 			<div>
 				{sortedProducts.length !== 0 &&
 					sortedProducts.map((p) => (
-						<Product key={p._id} product={p} />
+						<Product layout key={p._id} product={p} />
 					))}
 			</div>
 			<div className={styles.hhtitle}>

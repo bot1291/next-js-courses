@@ -17,7 +17,7 @@ export const Menu = () => {
 		visible: {
 			marginBottom: 20,
 			transition: {
-				when: 'beforeChildren',
+				when: 'afterChildren',
 				staggerChildren: 0.05,
 			},
 		},
