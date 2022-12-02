@@ -1,6 +1,6 @@
 import styles from './Menu.module.css';
 import cn from 'classnames';
-import { useContext, useEffect } from 'react';
+import { forwardRef, useContext, useEffect } from 'react';
 import { AppContext } from '../../context/app.context';
 import { FirstLevelMenuItem, PageItem } from '../../interfaces/menu.interface';
 import Link from 'next/link';
@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 import { firstLevelMenu } from '../../helpers/helpers';
 import { motion } from 'framer-motion';
 
-export const Menu = () => {
+export const Menu = forwardRef(() => {
 	const { menuDefault, firstCategory, menu, setMenu } =
 		useContext(AppContext);
 	const router = useRouter();
@@ -117,7 +117,7 @@ export const Menu = () => {
 		return pages.map((p) => {
 			return (
 				<motion.div variants={variantsChildren} key={p.alias}>
-					<Link href={`/${route}/${p.alias}`} legacyBehavior>
+					<Link href={`/${route}/${p.alias}`} legacyBehavior >
 						<a
 							className={cn(styles.thirdLevel, {
 								[styles.thirdLevelActive]:
@@ -133,4 +133,6 @@ export const Menu = () => {
 	};
 
 	return <div className={styles.menu}>{buildFirstLevel()}</div>;
-};
+});
+
+Menu.displayName = 'Menu';

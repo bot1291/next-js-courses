@@ -142,16 +142,16 @@ export const ReviewForm = ({
 					[styles.closed]: !isFailed || isSuccess || isClosed,
 				})}
 			>
-				<div className={styles.failedTitle}>
-					Произошла ошибка
-				</div>
+				<div className={styles.failedTitle}>Произошла ошибка</div>
 				<span
 					onClick={() => setIsClosed(true)}
 					className={styles.cross}
 				>
 					<CrossIcon className={styles.closeFailed} />
 				</span>
-				<div className={styles.failedText}>Попробуйте обновить страницу</div>
+				<div className={styles.failedText}>
+					Попробуйте обновить страницу
+				</div>
 			</div>
 		</form>
 	);

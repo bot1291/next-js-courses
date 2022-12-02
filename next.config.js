@@ -8,6 +8,7 @@ export const images = {
 		},
 	],
 };
+
 export function webpack(config) {
 	config.module.rules.push({
 		loader: '@svgr/webpack',

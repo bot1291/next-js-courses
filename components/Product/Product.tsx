@@ -14,154 +14,152 @@ import { Review } from '../Review/Review';
 import { ReviewForm } from '../ReviewForm/ReviewForm';
 import { motion } from 'framer-motion';
 
-export const Product = motion(
-	// eslint-disable-next-line react/display-name
-	forwardRef(
-		(
-			{ product, className, ...props }: ProductProps,
-			ref: ForwardedRef<HTMLDivElement>
-		) => {
-			const [isReviewOpened, setIsReviewOpened] =
-				useState<boolean>(false);
-			const reviewRef = useRef<HTMLDivElement>(null);
+const ProductRef = forwardRef(
+	(
+		{ product, className, ...props }: ProductProps,
+		ref: ForwardedRef<HTMLDivElement>
+	) => {
+		const [isReviewOpened, setIsReviewOpened] = useState<boolean>(false);
+		const reviewRef = useRef<HTMLDivElement>(null);
 
-			const scrollToReview = () => {
-				product.reviews.length && setIsReviewOpened(true);
-				reviewRef.current?.scrollIntoView({
-					behavior: 'smooth',
-					block: 'start',
-				});
-			};
+		const variants = {
+			visible: {
+				opacity: 1,
+				height: 'auto',
+			},
+			hidden: { opacity: 0, height: 0 },
+		};
 
-			return (
-				<div ref={ref} className={className} {...props}>
-					<Card className={cn(styles.product)}>
-						<div className={styles.logo}>
-							<Image
-								width="70"
-								height="70"
-								src={`${process.env.NEXT_PUBLIC_DOMAIN}${product.image}`}
-								alt={product.title}
-							/>
-						</div>
-						<Htag className={styles.title} tag="h3">
-							{product.title}
-						</Htag>
-						<div className={styles.price}>
-							{priceRu(product.price)}
-							{product.oldPrice && (
-								<Tag className={styles.discount} color="green">
-									{priceRu(product.price - product.oldPrice)}
-								</Tag>
-							)}
-						</div>
-						<div className={styles.credit}>
-							{priceRu(product.credit)}/
-							<span className={styles.month}>мес</span>
-						</div>
-						<div className={styles.rating}>
-							<Rating rating={product.initialRating} />
-						</div>
-						<div className={styles.tags}>
-							{product.categories.map((c) => (
-								<Tag
-									className={styles.tag}
-									color="ghost"
-									key={c}
-								>
-									{c}
-								</Tag>
-							))}
-						</div>
-						<div className={styles.priceTitle}>цена</div>
-						<div className={styles.creditTitle}>в кредит</div>
-						<div
-							className={cn(styles.rateTitle, {
-								[styles.rateTitleColor]: product.reviews.length,
-							})}
+		const scrollToReview = () => {
+			product.reviews.length && setIsReviewOpened(true);
+			reviewRef.current?.scrollIntoView({
+				behavior: 'smooth',
+				block: 'start',
+			});
+		};
+
+		return (
+			<div ref={ref} className={className} {...props}>
+				<Card className={cn(styles.product)}>
+					<div className={styles.logo}>
+						<Image
+							width="70"
+							height="70"
+							src={`${process.env.NEXT_PUBLIC_DOMAIN}${product.image}`}
+							alt={product.title}
+						/>
+					</div>
+					<Htag className={styles.title} tag="h3">
+						{product.title}
+					</Htag>
+					<div className={styles.price}>
+						{priceRu(product.price)}
+						{product.oldPrice && (
+							<Tag className={styles.discount} color="green">
+								{priceRu(product.price - product.oldPrice)}
+							</Tag>
+						)}
+					</div>
+					<div className={styles.credit}>
+						{priceRu(product.credit)}/
+						<span className={styles.month}>мес</span>
+					</div>
+					<div className={styles.rating}>
+						<Rating rating={product.initialRating} />
+					</div>
+					<div className={styles.tags}>
+						{product.categories.map((c) => (
+							<Tag className={styles.tag} color="ghost" key={c}>
+								{c}
+							</Tag>
+						))}
+					</div>
+					<div className={styles.priceTitle}>цена</div>
+					<div className={styles.creditTitle}>в кредит</div>
+					<div
+						className={cn(styles.rateTitle, {
+							[styles.rateTitleColor]: product.reviews.length,
+						})}
+					>
+						<a
+							href="#ref"
+							onClick={
+								product.reviews.length
+									? scrollToReview
+									: undefined
+							}
 						>
-							<a
-								href="#ref"
-								onClick={
-									product.reviews.length
-										? scrollToReview
-										: undefined
-								}
+							<span className={styles.rateCount}>
+								{product.reviewCount}
+							</span>
+							{decOfNum(product.reviewCount, [
+								'отзыв',
+								'отзыва',
+								'отзывов',
+							])}
+						</a>
+					</div>
+					<Divider className={styles.hr} />
+					<div className={styles.description}>
+						{product.description}
+					</div>
+					<div className={styles.feature}>
+						{product.characteristics.map((c) => (
+							<div
+								className={styles.characteristics}
+								key={c.name}
 							>
-								<span className={styles.rateCount}>
-									{product.reviewCount}
+								<span className={styles.characteristicsName}>
+									{c.name}
 								</span>
-								{decOfNum(product.reviewCount, [
-									'отзыв',
-									'отзыва',
-									'отзывов',
-								])}
-							</a>
-						</div>
-						<Divider className={styles.hr} />
-						<div className={styles.description}>
-							{product.description}
-						</div>
-						<div className={styles.feature}>
-							{product.characteristics.map((c) => (
-								<div
-									className={styles.characteristics}
-									key={c.name}
-								>
-									<span
-										className={styles.characteristicsName}
-									>
-										{c.name}
-									</span>
-									<span className={styles.dots}></span>
-									<span
-										className={styles.characteristicsValue}
-									>
-										{c.value}
-									</span>
+								<span className={styles.dots}></span>
+								<span className={styles.characteristicsValue}>
+									{c.value}
+								</span>
+							</div>
+						))}
+					</div>
+					<div className={styles.advBlock}>
+						{product.advantages && (
+							<div className={styles.advantages}>
+								<div className={styles.advTitle}>
+									Преимущества
 								</div>
-							))}
-						</div>
-						<div className={styles.advBlock}>
-							{product.advantages && (
-								<div className={styles.advantages}>
-									<div className={styles.advTitle}>
-										Преимущества
-									</div>
-									<div>{product.advantages}</div>
+								<div>{product.advantages}</div>
+							</div>
+						)}
+						{product.disadvantages && (
+							<div className={styles.disadvantages}>
+								<div className={styles.advTitle}>
+									Недостатки
 								</div>
-							)}
-							{product.disadvantages && (
-								<div className={styles.disadvantages}>
-									<div className={styles.advTitle}>
-										Недостатки
-									</div>
-									<div>{product.disadvantages}</div>
-								</div>
-							)}
-						</div>
-						<Divider className={cn(styles.hr, styles.hr2)} />
-						<div className={styles.actions}>
-							<Button>Узнать подробнее</Button>
-							<Button
-								onClick={() =>
-									setIsReviewOpened(!isReviewOpened)
-								}
-								arrow={isReviewOpened ? 'down' : 'right'}
-								appearance="ghost"
-							>
-								{product.reviews.length
-									? 'Читать отзывы'
-									: 'Оставить первый отзыв'}
-							</Button>
-						</div>
-					</Card>
+								<div>{product.disadvantages}</div>
+							</div>
+						)}
+					</div>
+					<Divider className={cn(styles.hr, styles.hr2)} />
+					<div className={styles.actions}>
+						<Button>Узнать подробнее</Button>
+						<Button
+							onClick={() => setIsReviewOpened(!isReviewOpened)}
+							arrow={isReviewOpened ? 'down' : 'right'}
+							appearance="ghost"
+						>
+							{product.reviews.length
+								? 'Читать отзывы'
+								: 'Оставить первый отзыв'}
+						</Button>
+					</div>
+				</Card>
+				<motion.div
+					layout
+					variants={variants}
+					initial="hidden"
+					animate={isReviewOpened ? 'visible' : 'hidden'}
+				>
 					<Card
 						color="blue"
-						className={cn(styles.reviews, {
-							[styles.opened]: isReviewOpened,
-							[styles.closed]: !isReviewOpened,
-						})}
+						className={cn(styles.reviews)}
 						ref={reviewRef}
 					>
 						{product.reviews.map((r) => (
@@ -172,8 +170,11 @@ export const Product = motion(
 						))}
 						<ReviewForm productId={product._id} />
 					</Card>
-				</div>
-			);
-		}
-	)
+				</motion.div>
+			</div>
+		);
+	}
 );
+
+ProductRef.displayName = 'Product';
+export const Product = motion(ProductRef);
