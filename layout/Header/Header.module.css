@@ -29,7 +29,13 @@
 	}
 
 	.menuClose {
-		position: absolute;
+		position: fixed;
+		right: 15px;
+		top: 15px;
+	}
+
+	.hamb {
+		position: fixed;
 		right: 15px;
 		top: 15px;
 	}

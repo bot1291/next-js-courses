@@ -1,4 +1,4 @@
-import { createContext, PropsWithChildren, useState } from 'react';
+import { createContext, PropsWithChildren, useState, MouseEvent } from 'react';
 import { MenuItem } from '../interfaces/menu.interface';
 import { TopLevelCategory } from '../interfaces/page.interface';
 
@@ -8,7 +8,7 @@ export interface IAppContext {
 	setMenu?: (newMenu: MenuItem[]) => void;
 	menuDefault?: MenuItem[];
 	isOpened?: boolean;
-	setOpened?: (boolean: boolean) => void;
+	setOpened?: (element: 'button' | 'a', boolean: boolean) => void;
 }
 
 export const AppContext = createContext<IAppContext>({
@@ -24,8 +24,13 @@ export const AppContextProvider = ({
 	const [menuState, setMenuState] = useState<MenuItem[]>(menu);
 	const [isOpened, setIsOpened] = useState(false);
 
-	const setOpened = (boolean: boolean) => {
-		setIsOpened(boolean);
+	const setOpened = (element: 'button' | 'a', boolean: boolean) => {
+		if (element === 'button') {
+			setIsOpened(boolean);
+		}
+		if (element === 'a') {
+			setTimeout(() => setIsOpened(boolean), 600);
+		}
 	};
 
 	const setMenu = (newMenu: MenuItem[]) => {

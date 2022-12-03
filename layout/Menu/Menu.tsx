@@ -119,7 +119,7 @@ export const Menu = forwardRef(() => {
 				<motion.div variants={variantsChildren} key={p.alias}>
 					<Link href={`/${route}/${p.alias}`} legacyBehavior>
 						<a
-							onClick={() => setOpened && setOpened(false)}
+							onClick={() => setOpened && setOpened('a', false)}
 							className={cn(styles.thirdLevel, {
 								[styles.thirdLevelActive]:
 									`/${route}/${p.alias}` === router.asPath ||

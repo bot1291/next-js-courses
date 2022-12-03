@@ -14,7 +14,8 @@ export const Header = ({ className, ...props }: HeaderProps) => {
 		<header className={cn(className, styles.header)} {...props}>
 			<Logo />
 			<ButtonIcon
-				onClick={() => setOpened && setOpened(true)}
+				className={styles.hamb}
+				onClick={() => setOpened && setOpened('button', true)}
 				appearance="white"
 				icon="hamb"
 			/>
@@ -25,7 +26,7 @@ export const Header = ({ className, ...props }: HeaderProps) => {
 			>
 				<Sidebar className={styles.mobileSidebar} />
 				<ButtonIcon
-					onClick={() => setOpened && setOpened(false)}
+					onClick={() => setOpened && setOpened('button', false)}
 					className={styles.menuClose}
 					appearance="white"
 					icon="cross"

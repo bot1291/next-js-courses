@@ -4,6 +4,10 @@
 	border-radius: 5px;
 }
 
+.card:last-child {
+	margin-bottom: 10px;
+}
+
 .blue {
 	background-color: #f9f8ff;
 }
