@@ -9,7 +9,7 @@ import { firstLevelMenu } from '../../helpers/helpers';
 import { motion } from 'framer-motion';
 
 export const Menu = forwardRef(() => {
-	const { menuDefault, firstCategory, menu, setMenu } =
+	const { setOpened, menuDefault, firstCategory, menu, setMenu } =
 		useContext(AppContext);
 	const router = useRouter();
 
@@ -119,10 +119,12 @@ export const Menu = forwardRef(() => {
 				<motion.div variants={variantsChildren} key={p.alias}>
 					<Link href={`/${route}/${p.alias}`} legacyBehavior>
 						<a
+							onClick={() => setOpened && setOpened(false)}
 							className={cn(styles.thirdLevel, {
 								[styles.thirdLevelActive]:
-									(`/${route}/${p.alias}` === router.asPath) ||
-									(`/${route}/${p.alias}#ref` === router.asPath),
+									`/${route}/${p.alias}` === router.asPath ||
+									`/${route}/${p.alias}#ref` ===
+										router.asPath,
 							})}
 						>
 							{p.category}

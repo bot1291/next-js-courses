@@ -5,6 +5,7 @@
 	height: 40px;
 	cursor: pointer;
 	border: unset;
+	transition: all 0.2s ease;
 }
 
 .white {

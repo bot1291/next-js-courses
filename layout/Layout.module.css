@@ -27,21 +27,27 @@
 	grid-area: footer;
 }
 
+.closed {
+	overflow: hidden;
+	height: 0;
+}
+
 @media (max-width: 765px) {
 	.wrapper {
-		grid-template-columns: minmax(320px, 1fr);
+		grid-template-columns: 1fr;
 		grid-template-areas:
 			'header'
 			'body'
 			'footer';
+		gap: 10px 30px;
 	}
 
 	.sidebar {
-		display: none;
+		display: none !important;
 	}
 
 	.header {
-		display: block;
+		display: grid;
 	}
 
 	.body {

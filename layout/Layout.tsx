@@ -3,13 +3,18 @@ import { LayoutProps } from './Layout.props';
 import { Header } from './Header/Header';
 import { Sidebar } from './Sidebar/Sidebar';
 import { Footer } from './Footer/Footer';
-import { FunctionComponent } from 'react';
-import { AppContextProvider, IAppContext } from '../context/app.context';
+import { FunctionComponent, useContext } from 'react';
+import { AppContext, AppContextProvider, IAppContext } from '../context/app.context';
 import { Up } from '../components';
+import cn from 'classnames';
 
 const Layout = ({ children }: LayoutProps) => {
+	const { isOpened } = useContext(AppContext);
+
 	return (
-		<div className={styles.wrapper}>
+		<div className={cn(styles.wrapper, {
+			[styles.closed]: isOpened,
+		})}>
 			<Header className={styles.header} />
 			<Sidebar className={styles.sidebar} />
 			<div className={styles.body}>{children}</div>

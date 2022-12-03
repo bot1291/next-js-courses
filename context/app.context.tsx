@@ -1,4 +1,4 @@
-import { createContext, PropsWithChildren, ReactNode, useState } from 'react';
+import { createContext, PropsWithChildren, useState } from 'react';
 import { MenuItem } from '../interfaces/menu.interface';
 import { TopLevelCategory } from '../interfaces/page.interface';
 
@@ -7,6 +7,8 @@ export interface IAppContext {
 	firstCategory: TopLevelCategory;
 	setMenu?: (newMenu: MenuItem[]) => void;
 	menuDefault?: MenuItem[];
+	isOpened?: boolean;
+	setOpened?: (boolean: boolean) => void;
 }
 
 export const AppContext = createContext<IAppContext>({
@@ -20,6 +22,11 @@ export const AppContextProvider = ({
 	firstCategory,
 }: PropsWithChildren<IAppContext>): JSX.Element => {
 	const [menuState, setMenuState] = useState<MenuItem[]>(menu);
+	const [isOpened, setIsOpened] = useState(false);
+
+	const setOpened = (boolean: boolean) => {
+		setIsOpened(boolean);
+	};
 
 	const setMenu = (newMenu: MenuItem[]) => {
 		setMenuState(newMenu);
@@ -27,7 +34,14 @@ export const AppContextProvider = ({
 
 	return (
 		<AppContext.Provider
-			value={{ menuDefault: menu, menu: menuState, firstCategory, setMenu }}
+			value={{
+				isOpened,
+				setOpened,
+				menuDefault: menu,
+				menu: menuState,
+				firstCategory,
+				setMenu,
+			}}
 		>
 			{children}
 		</AppContext.Provider>

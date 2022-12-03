@@ -4,7 +4,7 @@ import cn from 'classnames';
 import { Input } from '../Input/Input';
 import { Button } from '../Button/Button';
 import LoopIcon from './loop.svg';
-import { KeyboardEventHandler, useState } from 'react';
+import { KeyboardEvent, useState } from 'react';
 import { useRouter } from 'next/router';
 
 export const Search = ({ className, ...props }: SearchProps) => {
@@ -20,7 +20,7 @@ export const Search = ({ className, ...props }: SearchProps) => {
 		});
 	};
 
-	const handleKeyDown = (e: KeyboardEvent) => {
+	const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
 		if (e.key === 'Enter') {
 			goToSearch();
 		}
