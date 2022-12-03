@@ -10,6 +10,18 @@ import { AppContext } from '../../context/app.context';
 
 export const Header = ({ className, ...props }: HeaderProps) => {
 	const { setOpened, isOpened } = useContext(AppContext);
+
+	const variants = {
+		opened: {
+			opacity: 1,
+			display: 'grid',
+		},
+		closed: {
+			opacity: 0,
+			transitionEnd: { display: 'none' },
+		},
+	};
+
 	return (
 		<header className={cn(className, styles.header)} {...props}>
 			<Logo />
@@ -20,9 +32,11 @@ export const Header = ({ className, ...props }: HeaderProps) => {
 				icon="hamb"
 			/>
 			<motion.div
-				className={cn(styles.mobileMenu, {
-					[styles.opened]: isOpened,
-				})}
+				initial="closed"
+				animate={isOpened ? 'opened' : 'closed'}
+				variants={variants}
+				transition={{ delay: 0.2 }}
+				className={cn(styles.mobileMenu)}
 			>
 				<Sidebar className={styles.mobileSidebar} />
 				<ButtonIcon

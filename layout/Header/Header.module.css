@@ -12,7 +12,6 @@
 	}
 
 	.mobileMenu {
-		display: none;
 		position: absolute;
 		z-index: 10;
 		background-color: #f5f6f8;
@@ -22,10 +21,6 @@
 		bottom: 0;
 		overflow-y: scroll;
 		padding: 15px;
-	}
-
-	.opened {
-		display: grid;
 	}
 
 	.menuClose {
