@@ -14,6 +14,7 @@
 	color: var(--black);
 	font-family: var(--font-family);
 	font-style: normal;
+	width: 100%;
 }
 
 .input:focus-visible {

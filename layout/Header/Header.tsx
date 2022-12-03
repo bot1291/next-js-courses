@@ -22,12 +22,24 @@ export const Header = ({ className, ...props }: HeaderProps) => {
 		},
 	};
 
+	const handleHambButton = () => {
+		if (window.scrollY === 0) {
+			setOpened && setOpened('button', true);
+		} else {
+			setTimeout(() => setOpened && setOpened('button', true), 800);
+		}
+		window.scrollTo({
+			top: 0,
+			behavior: 'smooth',
+		});
+	};
+
 	return (
 		<header className={cn(className, styles.header)} {...props}>
 			<Logo />
 			<ButtonIcon
 				className={styles.hamb}
-				onClick={() => setOpened && setOpened('button', true)}
+				onClick={handleHambButton}
 				appearance="white"
 				icon="hamb"
 			/>

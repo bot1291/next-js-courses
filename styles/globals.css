@@ -21,7 +21,7 @@ a {
 :root {
 	--black: #3b434e;
 	--gray: #787d85;
-	--gray-dark: #A4A4A4;
+	--gray-dark: #a4a4a4;
 	--gray-light: #ebebeb;
 	--white: white;
 	--primary: #7653fc;
@@ -31,4 +31,8 @@ a {
 	--green: #1dc37e;
 	--green-light: #c8f8e4;
 	--font-family: 'Noto Sans KR', sans-serif;
+}
+
+.body {
+	overflow: hidden;
 }

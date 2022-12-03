@@ -29,7 +29,6 @@
 
 .closed {
 	overflow: hidden;
-	height: 0;
 }
 
 @media (max-width: 765px) {
