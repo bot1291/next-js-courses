@@ -20,15 +20,15 @@ a {
 
 :root {
 	--black: #3b434e;
-	--gray: #787d85;
+	--gray: #6c7077;
 	--gray-dark: #a4a4a4;
 	--gray-light: #ebebeb;
 	--white: white;
-	--primary: #7653fc;
+	--primary: #7451f4;
 	--primary-hover: #755cdd;
 	--red: #fc836d;
 	--red-light: #f3b4a9;
-	--green: #1dc37e;
+	--green: #127a4d;
 	--green-light: #c8f8e4;
 	--font-family: 'Noto Sans KR', sans-serif;
 }

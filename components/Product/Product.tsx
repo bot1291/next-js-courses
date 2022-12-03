@@ -26,8 +26,13 @@ const ProductRef = forwardRef(
 			visible: {
 				opacity: 1,
 				height: 'auto',
+				display: 'grid',
 			},
-			hidden: { opacity: 0, height: 0 },
+			hidden: {
+				opacity: 0,
+				height: 0,
+				transitionEnd: { display: 'none' },
+			},
 		};
 
 		const scrollToReview = () => {
@@ -155,7 +160,6 @@ const ProductRef = forwardRef(
 					</div>
 				</Card>
 				<motion.div
-					layout
 					variants={variants}
 					initial="hidden"
 					animate={isReviewOpened ? 'visible' : 'hidden'}

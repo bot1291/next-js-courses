@@ -27,10 +27,6 @@
 	grid-area: footer;
 }
 
-.closed {
-	overflow: hidden;
-}
-
 @media (max-width: 765px) {
 	.wrapper {
 		grid-template-columns: 1fr;

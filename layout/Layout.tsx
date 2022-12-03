@@ -4,7 +4,11 @@ import { Header } from './Header/Header';
 import { Sidebar } from './Sidebar/Sidebar';
 import { Footer } from './Footer/Footer';
 import { FunctionComponent, useContext } from 'react';
-import { AppContext, AppContextProvider, IAppContext } from '../context/app.context';
+import {
+	AppContext,
+	AppContextProvider,
+	IAppContext,
+} from '../context/app.context';
 import { Up } from '../components';
 import cn from 'classnames';
 import { motion } from 'framer-motion';
@@ -15,12 +19,13 @@ const Layout = ({ children }: LayoutProps) => {
 	const variants = {
 		opened: {
 			height: 0,
+			overflow: 'scroll',
 		},
 		closed: {
 			height: 'auto',
+			overflow: 'hidden',
 		},
 	};
-
 
 	return (
 		<motion.div
@@ -28,9 +33,7 @@ const Layout = ({ children }: LayoutProps) => {
 			animate={isOpened ? 'opened' : 'closed'}
 			variants={variants}
 			transition={{ delay: 0.4 }}
-			className={cn(styles.wrapper, {
-				[styles.closed]: isOpened,
-			})}
+			className={cn(styles.wrapper)}
 		>
 			<Header className={styles.header} />
 			<Sidebar className={styles.sidebar} />

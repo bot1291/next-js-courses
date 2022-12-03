@@ -15,9 +15,14 @@ export const Header = ({ className, ...props }: HeaderProps) => {
 		opened: {
 			opacity: 1,
 			display: 'grid',
+			x: 0,
+			transition: {
+				stiffness: 100,
+			},
 		},
 		closed: {
 			opacity: 0,
+			x: '100%',
 			transitionEnd: { display: 'none' },
 		},
 	};
