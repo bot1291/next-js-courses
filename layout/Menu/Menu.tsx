@@ -1,6 +1,6 @@
 import styles from './Menu.module.css';
 import cn from 'classnames';
-import { forwardRef, useContext, useEffect } from 'react';
+import { forwardRef, useContext, useEffect, KeyboardEvent } from 'react';
 import { AppContext } from '../../context/app.context';
 import { FirstLevelMenuItem, PageItem } from '../../interfaces/menu.interface';
 import Link from 'next/link';
@@ -50,6 +50,16 @@ export const Menu = forwardRef(() => {
 			);
 	};
 
+	const openSecondLevelKey = (
+		key: KeyboardEvent<HTMLDivElement>,
+		secondCategory: string
+	) => {
+		if (key.code === 'Enter' || key.code === 'Space') {
+			key.preventDefault();
+			openSecondLevel(secondCategory);
+		}
+	};
+
 	const buildFirstLevel = () => {
 		return (
 			<>
@@ -90,6 +100,15 @@ export const Menu = forwardRef(() => {
 						return (
 							<div key={m._id.secondCategory}>
 								<div
+									tabIndex={0}
+									onKeyDown={(
+										key: KeyboardEvent<HTMLDivElement>
+									) =>
+										openSecondLevelKey(
+											key,
+											m._id.secondCategory
+										)
+									}
 									onClick={() =>
 										openSecondLevel(m._id.secondCategory)
 									}
@@ -104,7 +123,11 @@ export const Menu = forwardRef(() => {
 									animate={m.isOpened ? 'visible' : 'hidden'}
 									className={cn(styles.secondLevelBlock)}
 								>
-									{buildThirdLevel(m.pages, menuItem.route)}
+									{buildThirdLevel(
+										m.pages,
+										menuItem.route,
+										m.isOpened
+									)}
 								</motion.div>
 							</div>
 						);
@@ -113,12 +136,17 @@ export const Menu = forwardRef(() => {
 		);
 	};
 
-	const buildThirdLevel = (pages: PageItem[], route: string) => {
+	const buildThirdLevel = (
+		pages: PageItem[],
+		route: string,
+		isOpened: boolean | undefined
+	) => {
 		return pages.map((p) => {
 			return (
 				<motion.div variants={variantsChildren} key={p.alias}>
 					<Link href={`/${route}/${p.alias}`} legacyBehavior>
 						<a
+							tabIndex={isOpened ? 0 : -1}
 							onClick={() => setOpened && setOpened('a', false)}
 							className={cn(styles.thirdLevel, {
 								[styles.thirdLevelActive]:

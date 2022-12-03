@@ -5,7 +5,6 @@
 	align-items: center;
 	font-weight: 500;
 	font-size: 18px;
-	line-height: 25px;
 	color: var(--gray);
 	margin-top: 20px;
 }
@@ -26,7 +25,6 @@
 	text-transform: uppercase;
 	font-weight: 300;
 	font-size: 12px;
-	line-height: 16px;
 	color: var(--gray);
 }
 
@@ -45,10 +43,10 @@
 .thirdLevel {
 	font-weight: 600;
 	font-size: 14px;
-	line-height: 19px;
 	color: var(--gray);
 	margin-bottom: 10px;
 	display: block;
+	outline-offset: -1px;
 }
 
 .thirdLevel:hover,

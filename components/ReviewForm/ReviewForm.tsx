@@ -8,7 +8,7 @@ import { Button } from '../Button/Button';
 import CrossIcon from './cross.svg';
 import { useForm, Controller } from 'react-hook-form';
 import { IReviewForm, IReviewSentResponse } from './ReviewForm.interface';
-import { useState } from 'react';
+import { useState, KeyboardEvent } from 'react';
 import axios from 'axios';
 import { API } from '../../helpers/api';
 
@@ -128,6 +128,10 @@ export const ReviewForm = ({
 			>
 				<div className={styles.successTitle}>Ваш отзыв отправлен</div>
 				<span
+					tabIndex={0}
+					onKeyDown={(key: KeyboardEvent<HTMLSpanElement>) =>
+						key.code === 'Enter' && setIsClosed(true)
+					}
 					onClick={() => setIsClosed(true)}
 					className={styles.cross}
 				>
@@ -144,6 +148,10 @@ export const ReviewForm = ({
 			>
 				<div className={styles.failedTitle}>Произошла ошибка</div>
 				<span
+					tabIndex={0}
+					onKeyDown={(key: KeyboardEvent<HTMLSpanElement>) =>
+						key.code === 'Enter' && setIsClosed(true)
+					}
 					onClick={() => setIsClosed(true)}
 					className={styles.cross}
 				>
