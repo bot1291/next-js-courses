@@ -3,7 +3,6 @@ export const images = {
 		{
 			protocol: 'https',
 			hostname: 'courses-top.ru',
-			port: '',
 			pathname: '/**/**',
 		},
 	],

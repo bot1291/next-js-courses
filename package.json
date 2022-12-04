@@ -6,9 +6,9 @@
 	"scripts": {
 		"prepare": "husky install",
 		"dev": "next dev",
+		"export": "next export",
 		"build": "next build",
 		"start": "next start",
-		"lint": "next lint",
 		"stylelint": "stylelint \"**/*.css\" --fix"
 	},
 	"dependencies": {
