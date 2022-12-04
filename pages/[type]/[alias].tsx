@@ -10,14 +10,27 @@ import { ProductModel } from '../../interfaces/product.interface';
 import { withLayout } from '../../layout/Layout';
 import { TopPageComponent } from '../../page-components';
 import { API } from '../../helpers/api';
+import Head from 'next/head';
 
 function TopPage({ firstCategory, page, products }: TopPageProps): JSX.Element {
 	return (
-		<TopPageComponent
-			firstCategory={firstCategory}
-			page={page}
-			products={products}
-		/>
+		<>
+			<Head>
+				<title>{page.metaTitle}</title>
+				<meta name="description" content={page.metaDescription} />
+				<meta property="og:title" content={page.metaTitle} />
+				<meta
+					property="og:description"
+					content={page.metaDescription}
+				/>
+				<meta property="og:type" content="article" />
+			</Head>
+			<TopPageComponent
+				firstCategory={firstCategory}
+				page={page}
+				products={products}
+			/>
+		</>
 	);
 }
 
