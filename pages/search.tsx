@@ -4,21 +4,29 @@ import { MenuItem } from '../interfaces/menu.interface';
 import { API } from '../helpers/api';
 import { useContext } from 'react';
 import { AppContext } from '../context/app.context';
+import { Htag } from '../components';
+import styles from '../styles/search.module.css';
+import { PageBlock } from '../components/PageBlock/PageBlock';
 
 function Search(): JSX.Element {
 	const { searchPages } = useContext(AppContext);
 	return (
-		<div>
-			{searchPages?.map((p) => (
-				<span key={p._id}>{p.title}</span>
-			))}
+		<div className={styles.home}>
+			<Htag tag="h1" className={styles.complitation}>
+				{searchPages && searchPages.length ? "Все найденные категории по заданному поиску" : "Категорий не найдено"}
+			</Htag>
+			<div className={styles.categoriesBlock}>
+				{searchPages?.map((p) => (
+					<PageBlock key={p._id} page={p} />
+				))}
+			</div>
 		</div>
 	);
 }
 
 export default withLayout(Search);
 
-export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+export const getStaticProps: GetStaticProps<SeacrhProps> = async () => {
 	const firstCategory = 0;
 
 	const menu: MenuItem[] = await fetch(API.topPage.find, {
@@ -40,7 +48,6 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
 	};
 };
 
-export interface HomeProps extends Record<string, unknown> {
+export interface SeacrhProps extends Record<string, unknown> {
 	menu: MenuItem[];
-	firstCategory: number;
 }

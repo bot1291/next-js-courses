@@ -1,0 +1,20 @@
+.pageBlock {
+}
+
+.page {
+	padding: 15px;
+	display: grid;
+	grid-template-rows: 1fr auto;
+	justify-content: center;
+	height: 100%;
+}
+
+.link {
+	margin-top: 15px;
+	justify-self: center;
+}
+
+.pageCategory {
+	text-align: center;
+	margin: unset;
+}

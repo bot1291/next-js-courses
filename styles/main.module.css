@@ -4,6 +4,7 @@
 }
 
 .complitation {
+	font-weight: 600;
 	grid-column: start / end;
 }
 
