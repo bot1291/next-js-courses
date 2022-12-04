@@ -1,0 +1,18 @@
+.category {
+	padding: 15px;
+	height: 100%;
+}
+
+.courses {
+	display: grid;
+	gap: 10px 15px;
+	grid-template-columns: 1fr;
+}
+
+.courseName {
+	margin-bottom: 5px;
+}
+
+.courseLink:hover {
+	color: var(--primary);
+}

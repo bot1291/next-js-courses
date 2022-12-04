@@ -1,35 +1,39 @@
 import { GetStaticProps } from 'next';
 import { useState } from 'react';
-import { Htag, Button, P, Tag, Rating, Input, TextArea } from '../components/';
+import {
+	Htag,
+	Button,
+	P,
+	Tag,
+	Rating,
+	Input,
+	TextArea,
+	Card,
+	Divider,
+} from '../components/';
 import { withLayout } from '../layout/Layout';
 import { MenuItem } from '../interfaces/menu.interface';
 import { API } from '../helpers/api';
+import styles from '../styles/main.module.css';
+import { CourseBlock } from '../components/CourseBlock/CourseBlock';
 
-function Home(): JSX.Element {
-	const [rating, setRating] = useState<number>(0);
+function Home({ menu }: HomeProps): JSX.Element {
+	console.log(menu);
 	return (
-		<>
-			<Htag tag="h1">Htag</Htag>
-			<Button arrow="right">Узнать подробнее</Button>
-			<Button arrow="down" appearance="ghost">
-				Узнать подробнее
-			</Button>
-			<P size="l">Large</P>
-			<P size="s">Small</P>
-			<P>Medium</P>
-			<Tag color="red">hh.ru</Tag>
-			<Tag size="s" color="ghost">
-				Ghost
-			</Tag>
-			<Tag color="green">Green</Tag>
-			<Tag size="s" color="primary">
-				Primary
-			</Tag>
-			<Rating rating={rating} isEditable setRating={setRating}></Rating>
-			<Rating rating={3}></Rating>
-			<Input placeholder="Имя" />
-			<TextArea placeholder="" />
-		</>
+		<div className={styles.home}>
+			<Htag tag="h1" className={styles.complitation}>
+				Подборка онлайн курсов
+			</Htag>
+			<Htag tag="h2" className={styles.allCoursesTitle}>
+				Ниже представлены все доступные курсы на сайте
+			</Htag>
+			<Tag color='gray' className={styles.length}>{menu.length}</Tag>
+			<div className={styles.coursesBlock}>
+				{menu.map((m) => (
+					<CourseBlock key={m._id.secondCategory} menu={m} />
+				))}
+			</div>
+		</div>
 	);
 }
 

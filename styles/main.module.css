@@ -1,0 +1,38 @@
+.home {
+	display: grid;
+	grid-template-columns: [start] auto 1fr [end];
+}
+
+.complitation {
+	grid-column: start / end;
+}
+
+.allCoursesTitle {
+	margin-top: 15px;
+	grid-column: start;
+}
+
+.length {
+	justify-self: flex-start;
+	align-self: center;
+	margin-left: 10px;
+}
+
+.coursesBlock {
+	display: grid;
+	gap: 10px;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-column: start / end;
+}
+
+@media screen and (max-width: 1110px) {
+	.coursesBlock {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.coursesBlock {
+		grid-template-columns: 1fr;
+	}
+}

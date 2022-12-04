@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import { Sidebar } from '../Sidebar/Sidebar';
 import { useContext } from 'react';
 import { AppContext } from '../../context/app.context';
+import Link from 'next/link';
 
 export const Header = ({ className, ...props }: HeaderProps) => {
 	const { setOpened, isOpened } = useContext(AppContext);
@@ -41,7 +42,9 @@ export const Header = ({ className, ...props }: HeaderProps) => {
 
 	return (
 		<header className={cn(className, styles.header)} {...props}>
-			<Logo />
+			<Link href='/'>
+				<Logo />
+			</Link>
 			<ButtonIcon
 				className={styles.hamb}
 				onClick={handleHambButton}

@@ -54,7 +54,7 @@ const Layout = ({ children }: LayoutProps) => {
 		>
 			<a
 				onFocus={() => setIsDisplayed(true)}
-				tabIndex={1}
+				tabIndex={0}
 				className={cn(styles.skipLink, {
 					[styles.displayed]: isDisplayed,
 				})}

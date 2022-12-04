@@ -12,7 +12,6 @@ export const Menu = forwardRef(() => {
 	const { setOpened, menuDefault, firstCategory, menu, setMenu } =
 		useContext(AppContext);
 	const router = useRouter();
-
 	const variants = {
 		visible: {
 			marginBottom: 20,
@@ -70,6 +69,7 @@ export const Menu = forwardRef(() => {
 								<div
 									className={cn(styles.firstLevel, {
 										[styles.firstLevelActive]:
+											router.asPath !== '/' &&
 											m.id === firstCategory,
 									})}
 								>
@@ -78,7 +78,9 @@ export const Menu = forwardRef(() => {
 								</div>
 							</a>
 						</Link>
-						{m.id === firstCategory && buildSecondLevel(m)}
+						{router.asPath !== '/' &&
+							m.id === firstCategory &&
+							buildSecondLevel(m)}
 					</div>
 				))}
 			</>
