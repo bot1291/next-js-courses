@@ -43,6 +43,7 @@ const ProductRef = forwardRef(
 				});
 			}, 50);
 			product.reviews.length && setIsReviewOpened(true);
+			reviewRef.current?.focus();
 		};
 
 		return (
