@@ -3,7 +3,13 @@ import { LayoutProps } from './Layout.props';
 import { Header } from './Header/Header';
 import { Sidebar } from './Sidebar/Sidebar';
 import { Footer } from './Footer/Footer';
-import { FunctionComponent, useContext } from 'react';
+import {
+	FunctionComponent,
+	useContext,
+	useState,
+	KeyboardEvent,
+	useRef,
+} from 'react';
 import {
 	AppContext,
 	AppContextProvider,
@@ -15,6 +21,17 @@ import { motion } from 'framer-motion';
 
 const Layout = ({ children }: LayoutProps) => {
 	const { isOpened } = useContext(AppContext);
+	const [isDisplayed, setIsDisplayed] = useState<boolean>(false);
+	const bodyRef = useRef<HTMLDivElement>(null);
+
+	const skipContentAction = (key: KeyboardEvent<HTMLAnchorElement>) => {
+		if (key.code === 'Space' || key.code === 'Enter') {
+			key.preventDefault();
+			bodyRef.current?.focus();
+			setIsDisplayed(false);
+		}
+		setIsDisplayed(false);
+	};
 
 	const variants = {
 		opened: {
@@ -35,9 +52,21 @@ const Layout = ({ children }: LayoutProps) => {
 			transition={{ delay: 0.4 }}
 			className={cn(styles.wrapper)}
 		>
+			<a
+				onFocus={() => setIsDisplayed(true)}
+				tabIndex={1}
+				className={cn(styles.skipLink, {
+					[styles.displayed]: isDisplayed,
+				})}
+				onKeyDown={skipContentAction}
+			>
+				Сразу к содержанию
+			</a>
 			<Header className={styles.header} />
 			<Sidebar className={styles.sidebar} />
-			<div className={styles.body}>{children}</div>
+			<div tabIndex={0} ref={bodyRef} className={styles.body}>
+				{children}
+			</div>
 			<Footer className={styles.footer} />
 			<Up />
 		</motion.div>

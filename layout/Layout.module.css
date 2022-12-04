@@ -21,10 +21,26 @@
 
 .body {
 	grid-area: body;
+	outline: unset;
 }
 
 .footer {
 	grid-area: footer;
+}
+
+.skipLink {
+	position: fixed;
+	left: 50px;
+	top: 15px;
+	overflow: hidden;
+	height: 0;
+	background-color: var(--primary);
+	color: var(--white);
+}
+
+.displayed {
+	height: auto;
+	padding: 5px;
 }
 
 @media (max-width: 765px) {
