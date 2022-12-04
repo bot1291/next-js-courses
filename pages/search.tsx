@@ -2,9 +2,18 @@ import { GetStaticProps } from 'next';
 import { withLayout } from '../layout/Layout';
 import { MenuItem } from '../interfaces/menu.interface';
 import { API } from '../helpers/api';
+import { useContext } from 'react';
+import { AppContext } from '../context/app.context';
 
 function Search(): JSX.Element {
-	return <>Search</>;
+	const { searchPages } = useContext(AppContext);
+	return (
+		<div>
+			{searchPages?.map((p) => (
+				<span key={p._id}>{p.title}</span>
+			))}
+		</div>
+	);
 }
 
 export default withLayout(Search);

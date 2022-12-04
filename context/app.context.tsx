@@ -1,5 +1,5 @@
 import { createContext, PropsWithChildren, useState } from 'react';
-import { MenuItem } from '../interfaces/menu.interface';
+import { MenuItem, PageItem } from '../interfaces/menu.interface';
 import { TopLevelCategory } from '../interfaces/page.interface';
 
 export interface IAppContext {
@@ -9,6 +9,8 @@ export interface IAppContext {
 	menuDefault?: MenuItem[];
 	isOpened?: boolean;
 	setOpened?: (boolean: boolean) => void;
+	handleSetSearchPages?: (menu: PageItem[]) => void;
+	searchPages?: PageItem[];
 }
 
 export const AppContext = createContext<IAppContext>({
@@ -23,6 +25,11 @@ export const AppContextProvider = ({
 }: PropsWithChildren<IAppContext>): JSX.Element => {
 	const [menuState, setMenuState] = useState<MenuItem[]>(menu);
 	const [isOpened, setIsOpened] = useState(false);
+	const [searchPages, setSearchMenu] = useState<PageItem[]>([]);
+
+	const handleSetSearchPages = (menu: PageItem[]) => {
+		setSearchMenu(menu);
+	};
 
 	const setOpened = (boolean: boolean) => {
 		setIsOpened(boolean);
@@ -41,6 +48,8 @@ export const AppContextProvider = ({
 				menu: menuState,
 				firstCategory,
 				setMenu,
+				searchPages,
+				handleSetSearchPages,
 			}}
 		>
 			{children}

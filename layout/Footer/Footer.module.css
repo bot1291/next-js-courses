@@ -7,6 +7,7 @@
 }
 
 .wrapper {
+	text-align: center;
 	display: grid;
 
 	max-width: 1510px;
@@ -17,7 +18,7 @@
 
 	font-size: 16px;
 	line-height: 20px;
-	grid-template-columns: 1fr auto auto;
+	grid-template-columns: auto auto auto;
 	gap: 10px 40px;
 	justify-items: center;
 }

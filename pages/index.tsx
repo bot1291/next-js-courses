@@ -1,16 +1,5 @@
 import { GetStaticProps } from 'next';
-import { useState } from 'react';
-import {
-	Htag,
-	Button,
-	P,
-	Tag,
-	Rating,
-	Input,
-	TextArea,
-	Card,
-	Divider,
-} from '../components/';
+import { Htag, Tag } from '../components/';
 import { withLayout } from '../layout/Layout';
 import { MenuItem } from '../interfaces/menu.interface';
 import { API } from '../helpers/api';
@@ -18,7 +7,6 @@ import styles from '../styles/main.module.css';
 import { CourseBlock } from '../components/CourseBlock/CourseBlock';
 
 function Home({ menu }: HomeProps): JSX.Element {
-	console.log(menu);
 	return (
 		<div className={styles.home}>
 			<Htag tag="h1" className={styles.complitation}>
@@ -27,7 +15,9 @@ function Home({ menu }: HomeProps): JSX.Element {
 			<Htag tag="h2" className={styles.allCoursesTitle}>
 				Ниже представлены все доступные курсы на сайте
 			</Htag>
-			<Tag color='gray' className={styles.length}>{menu.length}</Tag>
+			<Tag color="gray" className={styles.length}>
+				{menu.length}
+			</Tag>
 			<div className={styles.coursesBlock}>
 				{menu.map((m) => (
 					<CourseBlock key={m._id.secondCategory} menu={m} />
@@ -56,12 +46,10 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
 	return {
 		props: {
 			menu,
-			firstCategory,
 		},
 	};
 };
 
 export interface HomeProps extends Record<string, unknown> {
 	menu: MenuItem[];
-	firstCategory: number;
 }
