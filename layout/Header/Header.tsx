@@ -29,9 +29,9 @@ export const Header = ({ className, ...props }: HeaderProps) => {
 
 	const handleHambButton = () => {
 		if (window.scrollY === 0) {
-			setOpened && setOpened('button', true);
+			setOpened && setOpened(true);
 		} else {
-			setTimeout(() => setOpened && setOpened('button', true), 800);
+			setTimeout(() => setOpened && setOpened(true), 800);
 		}
 		window.scrollTo({
 			top: 0,
@@ -57,7 +57,7 @@ export const Header = ({ className, ...props }: HeaderProps) => {
 			>
 				<Sidebar className={styles.mobileSidebar} />
 				<ButtonIcon
-					onClick={() => setOpened && setOpened('button', false)}
+					onClick={() => setOpened && setOpened(false)}
 					className={styles.menuClose}
 					appearance="white"
 					icon="cross"

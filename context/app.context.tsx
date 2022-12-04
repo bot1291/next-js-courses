@@ -8,7 +8,7 @@ export interface IAppContext {
 	setMenu?: (newMenu: MenuItem[]) => void;
 	menuDefault?: MenuItem[];
 	isOpened?: boolean;
-	setOpened?: (element: 'button' | 'a', boolean: boolean) => void;
+	setOpened?: (boolean: boolean) => void;
 }
 
 export const AppContext = createContext<IAppContext>({
@@ -24,13 +24,8 @@ export const AppContextProvider = ({
 	const [menuState, setMenuState] = useState<MenuItem[]>(menu);
 	const [isOpened, setIsOpened] = useState(false);
 
-	const setOpened = (element: 'button' | 'a', boolean: boolean) => {
-		if (element === 'button') {
-			setIsOpened(boolean);
-		}
-		if (element === 'a') {
-			setTimeout(() => setIsOpened(boolean), 600);
-		}
+	const setOpened = (boolean: boolean) => {
+		setIsOpened(boolean);
 	};
 
 	const setMenu = (newMenu: MenuItem[]) => {

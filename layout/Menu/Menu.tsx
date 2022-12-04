@@ -147,7 +147,7 @@ export const Menu = forwardRef(() => {
 					<Link href={`/${route}/${p.alias}`} legacyBehavior>
 						<a
 							tabIndex={isOpened ? 0 : -1}
-							onClick={() => setOpened && setOpened('a', false)}
+							onClick={() => setOpened && setOpened(false)}
 							className={cn(styles.thirdLevel, {
 								[styles.thirdLevelActive]:
 									`/${route}/${p.alias}` === router.asPath ||

@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import { useScrollY } from '../../hooks/useScrollY';
 import { ButtonIcon } from '../ButtonIcon/ButtonIcon';
 import styles from './Up.module.css';
-import UpIcon from './up.svg';
 
 export const Up = () => {
 	const controls = useAnimation();
