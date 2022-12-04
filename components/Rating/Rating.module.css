@@ -20,9 +20,10 @@
 
 .errorMessage {
 	position: absolute;
-	color: var(--red);
 	bottom: -22px;
 	left: -73px;
+
+	color: var(--red);
 }
 
 .isError svg {

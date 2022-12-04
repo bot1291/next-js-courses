@@ -3,6 +3,7 @@
 	grid-template-columns: auto 230px minmax(320px, 1200px) auto;
 	grid-template-rows: auto 1fr auto;
 	gap: 40px 30px;
+
 	min-height: 100vh;
 	grid-template-areas:
 		'. header header .'
@@ -12,6 +13,7 @@
 
 .header {
 	grid-area: header;
+
 	display: none;
 }
 
@@ -21,6 +23,7 @@
 
 .body {
 	grid-area: body;
+
 	outline: unset;
 }
 
@@ -30,12 +33,15 @@
 
 .skipLink {
 	position: fixed;
-	left: 50px;
 	top: 15px;
+	left: 50px;
+
 	overflow: hidden;
+
 	height: 0;
-	background-color: var(--primary);
+
 	color: var(--white);
+	background-color: var(--primary);
 }
 
 .displayed {

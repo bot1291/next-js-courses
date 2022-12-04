@@ -1,17 +1,21 @@
 .tag {
 	display: inline-block;
+
 	margin-right: 5px;
+
 	border-radius: 20px;
 }
 
 .s {
 	padding: 5px 10px;
+
 	font-size: 12px;
 	line-height: 12px;
 }
 
 .m {
 	padding: 5px 10px;
+
 	font-size: 14px;
 	line-height: 14px;
 }
@@ -22,19 +26,22 @@
 
 .red {
 	color: var(--white);
-	background-color: #de0000;
+	background-color: #DE0000;
+
 	font-weight: 600;
 }
 
 .gray {
 	color: var(--white);
-	background-color: #44484e;
+	background-color: #44484E;
+
 	font-weight: 600;
 }
 
 .green {
 	color: var(--green);
 	background-color: var(--green-light);
+
 	font-weight: 700;
 }
 

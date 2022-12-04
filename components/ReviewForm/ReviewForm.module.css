@@ -1,10 +1,11 @@
 .reviewForm {
+	display: grid;
+	align-items: center;
+
 	font-size: 14px;
 	line-height: 24px;
-	display: grid;
 	gap: 20px 30px;
 	grid-template-columns: [start] auto 1fr auto [end];
-	align-items: center;
 }
 
 .titleReview {
@@ -20,14 +21,16 @@
 }
 
 .moderation {
-	margin-left: 15px;
 	position: relative;
+
+	margin-left: 15px;
 }
 
-.moderation:before {
+.moderation::before {
 	position: absolute;
-	left: -10px;
 	top: 0;
+	left: -10px;
+
 	content: '*';
 }
 
@@ -39,11 +42,13 @@
 
 .success,
 .failed {
-	margin-top: 15px;
-	background-color: var(--green-light);
-	padding: 20px;
-	border-radius: 5px;
 	display: grid;
+
+	margin-top: 15px;
+	padding: 20px;
+
+	border-radius: 5px;
+	background-color: var(--green-light);
 	grid-template-columns: [start] auto [middle] auto [end];
 }
 
@@ -63,12 +68,14 @@
 .cross {
 	grid-column: middle / end;
 	justify-self: flex-end;
+
 	cursor: pointer;
 }
 
 .successTitle {
-	font-weight: 700;
 	white-space: nowrap;
+
+	font-weight: 700;
 }
 
 .failedTitle {
@@ -91,6 +98,7 @@
 
 	.rating {
 		grid-column: start / end;
+
 		margin-left: 14px;
 	}
 

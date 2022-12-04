@@ -2,37 +2,42 @@
 	.header {
 		display: grid;
 		grid-template-columns: 1fr auto;
+
 		padding: 15px;
 		padding-bottom: 5px;
 	}
 
 	.mobileSidebar {
 		display: grid;
+
 		margin: 0 auto;
 	}
 
 	.mobileMenu {
 		position: fixed;
 		z-index: 10;
-		background-color: #f5f6f8;
 		top: 0;
 		right: 0;
-		left: 0;
 		bottom: 0;
-		height: 100vh;
+		left: 0;
+
 		overflow-y: scroll;
+
+		height: 100vh;
 		padding: 15px;
+
+		background-color: #F5F6F8;
 	}
 
 	.menuClose {
 		position: fixed;
-		right: 15px;
 		top: 15px;
+		right: 15px;
 	}
 
 	.hamb {
 		position: fixed;
-		right: 15px;
 		top: 15px;
+		right: 15px;
 	}
 }

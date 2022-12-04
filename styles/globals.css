@@ -2,8 +2,9 @@ html,
 body {
 	margin: 0;
 	padding: 0;
+
 	color: var(--black);
-	background-color: #f5f6f8;
+	background-color: #F5F6F8;
 
 	font-family: var(--font-family);
 }
@@ -19,17 +20,17 @@ a {
 }
 
 :root {
-	--black: #3b434e;
-	--gray: #6c7077;
-	--gray-dark: #a4a4a4;
-	--gray-light: #ebebeb;
+	--black: #3B434E;
+	--gray: #6C7077;
+	--gray-dark: #A4A4A4;
+	--gray-light: #EBEBEB;
 	--white: white;
-	--primary: #7451f4;
-	--primary-hover: #755cdd;
-	--red: #fc836d;
-	--red-light: #f3b4a9;
-	--green: #127a4d;
-	--green-light: #c8f8e4;
+	--primary: #7451F4;
+	--primary-hover: #755CDD;
+	--red: #FC836D;
+	--red-light: #F3B4A9;
+	--green: #127A4D;
+	--green-light: #C8F8E4;
 	--font-family: 'Noto Sans KR', sans-serif;
 }
 

@@ -8,15 +8,18 @@
 
 .wrapper {
 	display: grid;
+
+	max-width: 1510px;
+	margin: 0 auto;
 	padding: 25px 30px;
-	grid-template-columns: 1fr auto auto;
-	gap: 10px 40px;
+
 	color: var(--white);
+
 	font-size: 16px;
 	line-height: 20px;
-	max-width: 1510px;
+	grid-template-columns: 1fr auto auto;
+	gap: 10px 40px;
 	justify-items: center;
-	margin: 0 auto;
 }
 
 @media (max-width: 765px) {
