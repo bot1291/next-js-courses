@@ -1,10 +1,37 @@
+.home {
+	display: grid;
+	grid-template-columns: [start] auto 1fr [end];
+}
+
 .categoriesBlock {
 	gap: 25px;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
+	grid-column: start / end;
 }
 
 .complitation {
 	font-weight: 600;
 	margin-bottom: 15px;
+	grid-column: start;
+}
+
+.countPages {
+	align-self: center;
+	justify-self: flex-start;
+	margin-left: 15px;
+	margin-bottom: 10px;
+}
+
+
+@media screen and (max-width: 1110px) {
+	.categoriesBlock {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.categoriesBlock {
+		grid-template-columns: 1fr;
+	}
 }

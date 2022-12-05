@@ -13,28 +13,23 @@ export const Search = ({ className, ...props }: SearchProps) => {
 	const [search, setSearch] = useState<string>('');
 	const router = useRouter();
 
-	const { menu, handleSetSearchPages } = useContext(AppContext);
+	const { menu, handleSetSearchPages, setOpened } = useContext(AppContext);
 
+	const searchThroughCourses = (word: string): boolean => {
+		return word
+			.toLocaleLowerCase()
+			.split(' ')
+			.join('')
+			.includes(search.toLocaleLowerCase().split(' ').join(''));
+	};
 
 	const goToSearch = () => {
 		const newPages: PageItem[] = [];
 		for (let i = 0; i < menu.length; i++) {
 			for (let e = 0; e < menu[i].pages.length; e++) {
 				if (
-					menu[i].pages[e].alias
-						.toLocaleLowerCase()
-						.split(' ')
-						.join('')
-						.includes(
-							search.toLocaleLowerCase().split(' ').join('')
-						) ||
-					menu[i].pages[e].category
-						.toLocaleLowerCase()
-						.split(' ')
-						.join('')
-						.includes(
-							search.toLocaleLowerCase().split(' ').join('')
-						)
+					searchThroughCourses(menu[i].pages[e].alias) ||
+					searchThroughCourses(menu[i].pages[e].category)
 				) {
 					newPages.push(menu[i].pages[e]);
 				}
@@ -48,6 +43,8 @@ export const Search = ({ className, ...props }: SearchProps) => {
 				q: search,
 			},
 		});
+		setOpened && setOpened(false);
+		setSearch('');
 	};
 
 	const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {

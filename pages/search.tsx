@@ -4,7 +4,7 @@ import { MenuItem } from '../interfaces/menu.interface';
 import { API } from '../helpers/api';
 import { useContext, useEffect } from 'react';
 import { AppContext } from '../context/app.context';
-import { Htag } from '../components';
+import { Htag, Tag } from '../components';
 import styles from '../styles/search.module.css';
 import { PageBlock } from '../components/PageBlock/PageBlock';
 
@@ -22,6 +22,9 @@ function Search(): JSX.Element {
 					? 'Все найденные категории по заданному поиску'
 					: 'Категорий не найдено'}
 			</Htag>
+			{searchPages && !!searchPages.length && (
+				<Tag className={styles.countPages} color='gray'>{searchPages.length}</Tag>
+			)}
 			<div className={styles.categoriesBlock}>
 				{searchPages?.map((p) => (
 					<PageBlock key={p._id} page={p} />

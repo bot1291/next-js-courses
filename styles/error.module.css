@@ -1,0 +1,18 @@
+.error {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: auto 30px auto;
+	gap: 10px;
+	height: 100%;
+	justify-items: center;
+}
+
+.notFound {
+	margin: unset;
+}
+
+.error404 {
+	font-size: 130px;
+	line-height: unset;
+	align-self: flex-end;
+}
