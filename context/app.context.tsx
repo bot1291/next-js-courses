@@ -9,7 +9,7 @@ export interface IAppContext {
 	menuDefault?: MenuItem[];
 	isOpened?: boolean;
 	setOpened?: (boolean: boolean) => void;
-	handleSetSearchPages?: (pages: PageItem[]) => void;
+	handleSetSearchPages?: () => void;
 	searchPages?: PageItem[];
 }
 
@@ -27,8 +27,8 @@ export const AppContextProvider = ({
 	const [isOpened, setIsOpened] = useState(false);
 	const [searchPages, setSearchMenu] = useState<PageItem[]>([]);
 
-	const handleSetSearchPages = (pages: PageItem[]) => {
-		setSearchMenu(pages);
+	const handleSetSearchPages = () => {
+		setSearchMenu(JSON.parse(localStorage.pages));
 	};
 
 	const setOpened = (boolean: boolean) => {

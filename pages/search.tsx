@@ -2,18 +2,25 @@ import { GetStaticProps } from 'next';
 import { withLayout } from '../layout/Layout';
 import { MenuItem } from '../interfaces/menu.interface';
 import { API } from '../helpers/api';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { AppContext } from '../context/app.context';
 import { Htag } from '../components';
 import styles from '../styles/search.module.css';
 import { PageBlock } from '../components/PageBlock/PageBlock';
 
 function Search(): JSX.Element {
-	const { searchPages } = useContext(AppContext);
+	const { searchPages, handleSetSearchPages } = useContext(AppContext);
+
+	useEffect(() => {
+		handleSetSearchPages && handleSetSearchPages();
+	}, []);
+
 	return (
 		<div className={styles.home}>
 			<Htag tag="h1" className={styles.complitation}>
-				{searchPages && searchPages.length ? "Все найденные категории по заданному поиску" : "Категорий не найдено"}
+				{searchPages && searchPages.length
+					? 'Все найденные категории по заданному поиску'
+					: 'Категорий не найдено'}
 			</Htag>
 			<div className={styles.categoriesBlock}>
 				{searchPages?.map((p) => (
