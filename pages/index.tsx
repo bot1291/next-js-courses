@@ -1,10 +1,9 @@
 import { GetStaticProps } from 'next';
-import { Htag, Tag } from '../components/';
+import { CourseBlock, Htag, Tag } from '../components/';
 import { withLayout } from '../layout/Layout';
 import { MenuItem } from '../interfaces/menu.interface';
 import { API } from '../helpers/api';
 import styles from '../styles/main.module.css';
-import { CourseBlock } from '../components/CourseBlock/CourseBlock';
 
 function Home({ menu }: HomeProps): JSX.Element {
 	return (

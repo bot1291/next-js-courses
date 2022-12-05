@@ -16,3 +16,6 @@ export * from './Review/Review';
 export * from './ReviewForm/ReviewForm';
 export * from './Up/Up';
 export * from './ButtonIcon/ButtonIcon';
+export * from './PageBlock/PageBlock';
+export * from './CourseBlock/CourseBlock';
+export * from './InDevelopment/InDevelopment';

@@ -1,0 +1,20 @@
+.develop {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: auto 80px auto;
+	gap: 10px;
+	height: 100%;
+	justify-items: center;
+}
+
+.text {
+	margin: unset;
+	text-align: center;
+}
+
+.title {
+	font-size: 50px;
+	line-height: unset;
+	text-align: center;
+	align-self: flex-end;
+}

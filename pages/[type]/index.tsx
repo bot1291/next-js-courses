@@ -1,12 +1,13 @@
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
 import { ParsedUrlQuery } from 'querystring';
+import { InDevelopment } from '../../components';
 import { API } from '../../helpers/api';
 import { firstLevelMenu } from '../../helpers/helpers';
 import { MenuItem } from '../../interfaces/menu.interface';
 import { withLayout } from '../../layout/Layout';
 
-function Type({ firstCategory }: TypeProps): JSX.Element {
-	return <>Type: {firstCategory}</>;
+function Type(): JSX.Element {
+	return <InDevelopment />;
 }
 
 export default withLayout(Type);

@@ -4,9 +4,8 @@ import { MenuItem } from '../interfaces/menu.interface';
 import { API } from '../helpers/api';
 import { useContext, useEffect } from 'react';
 import { AppContext } from '../context/app.context';
-import { Htag, Tag } from '../components';
+import { Htag, PageBlock, Tag } from '../components';
 import styles from '../styles/search.module.css';
-import { PageBlock } from '../components/PageBlock/PageBlock';
 
 function Search(): JSX.Element {
 	const { searchPages, handleSetSearchPages } = useContext(AppContext);
