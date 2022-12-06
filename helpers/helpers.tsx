@@ -1,9 +1,13 @@
+// here is a different helpers which help to work with code much easily
+
 import CoursesIcon from './icons/courses.svg';
 import BooksItem from './icons/books.svg';
 import ProductItem from './icons/product.svg';
 import ServicesItem from './icons/services.svg';
 import { TopLevelCategory } from '../interfaces/page.interface';
 import { FirstLevelMenuItem } from '../interfaces/menu.interface';
+
+// it is array of object which help create first level of sidebar
 
 export const firstLevelMenu: FirstLevelMenuItem[] = [
 	{
@@ -32,11 +36,15 @@ export const firstLevelMenu: FirstLevelMenuItem[] = [
 	},
 ];
 
+// can delegate long number with a logic spaces and add ruble on the end
+
 export const priceRu = (price: number): string =>
 	price
 		.toString()
 		.replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
 		.concat(' ₽');
+
+// help to work with a different ending of words based on the number
 
 export const decOfNum = (number: number, titles: [string, string, string]): string => {
 	const cases = [2, 0, 1, 1, 1, 2]

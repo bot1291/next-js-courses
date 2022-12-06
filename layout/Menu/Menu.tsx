@@ -8,6 +8,8 @@ import { useRouter } from 'next/router';
 import { firstLevelMenu } from '../../helpers/helpers';
 import { motion } from 'framer-motion';
 
+// create all levels of sidebar categories
+
 export const Menu = forwardRef(() => {
 	const { setOpened, menuDefault, firstCategory, menu, setMenu } =
 		useContext(AppContext);
@@ -31,11 +33,16 @@ export const Menu = forwardRef(() => {
 		hidden: { opacity: 0, height: 0 },
 	};
 
+	// set current menu when we going through [type] alias pages
+	// (example from ./courses to ./books)
+
 	useEffect(() => {
 		if (menuDefault && setMenu) {
 			setMenu(menuDefault);
 		}
 	}, [setMenu, menuDefault]);
+
+	// second level opens when it match with second category which sent through props
 
 	const openSecondLevel = (secondCategory: string) => {
 		setMenu &&
@@ -49,6 +56,8 @@ export const Menu = forwardRef(() => {
 			);
 	};
 
+	// open second level menu when using button on keyboard
+
 	const openSecondLevelKey = (
 		key: KeyboardEvent<HTMLDivElement>,
 		secondCategory: string
@@ -58,6 +67,8 @@ export const Menu = forwardRef(() => {
 			openSecondLevel(secondCategory);
 		}
 	};
+
+	// delegate all levels on three logic blocks 
 
 	const buildFirstLevel = () => {
 		return (

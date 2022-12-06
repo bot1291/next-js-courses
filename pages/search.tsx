@@ -22,7 +22,9 @@ function Search(): JSX.Element {
 					: 'Категорий не найдено'}
 			</Htag>
 			{searchPages && !!searchPages.length && (
-				<Tag className={styles.countPages} color='gray'>{searchPages.length}</Tag>
+				<Tag className={styles.countPages} color="gray">
+					{searchPages.length}
+				</Tag>
 			)}
 			<div className={styles.categoriesBlock}>
 				{searchPages?.map((p) => (
@@ -33,28 +35,35 @@ function Search(): JSX.Element {
 	);
 }
 
+// wrap current page component in the layout and then export it
+
 export default withLayout(Search);
+
+// get data from backend on server side for sidebar
+// check if there were any error if so drop 404 error page
 
 export const getStaticProps: GetStaticProps<SeacrhProps> = async () => {
 	const firstCategory = 0;
 
-	const menu: MenuItem[] = await fetch(API.topPage.find, {
-		method: 'POST',
-		body: JSON.stringify({ firstCategory }),
-		headers: {
-			'Content-type': 'application/json; charset=UTF-8',
-		},
-	})
-		.then((response) => response.json())
-		.catch((e: Error) => {
-			console.log(e.message);
-		});
-	return {
-		props: {
-			menu,
-			firstCategory,
-		},
-	};
+	try {
+		const menu: MenuItem[] = await fetch(API.topPage.find, {
+			method: 'POST',
+			body: JSON.stringify({ firstCategory }),
+			headers: {
+				'Content-type': 'application/json; charset=UTF-8',
+			},
+		}).then((response) => response.json());
+		return {
+			props: {
+				menu,
+				firstCategory,
+			},
+		};
+	} catch {
+		return {
+			notFound: true,
+		};
+	}
 };
 
 export interface SeacrhProps extends Record<string, unknown> {

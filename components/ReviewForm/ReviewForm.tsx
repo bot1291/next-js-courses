@@ -12,11 +12,16 @@ import { useState, KeyboardEvent } from 'react';
 import axios from 'axios';
 import { API } from '../../helpers/api';
 
+// review form is supposed to send data to backend using react-hook-form
+
 export const ReviewForm = ({
 	productId,
 	className,
 	...props
 }: ReviewFormProps) => {
+	// register give as able to handle inputs to static
+	// control to flex things (means value set by using state)
+
 	const {
 		register,
 		control,
@@ -24,9 +29,21 @@ export const ReviewForm = ({
 		formState: { errors, isValid },
 		reset,
 	} = useForm<IReviewForm>();
+
+	// close window which opens when we successfully sent data or unsuccessfully
+
 	const [isClosed, setIsClosed] = useState<boolean>(true);
+
+	// set success sent data
+
 	const [isSuccess, setIsSuccesst] = useState<boolean>(false);
+
+	// set failed sent data
+
 	const [isFailed, setIsFailed] = useState<string>('');
+
+	// on submit sent data based on what we filled and id product to backend if we get message set success
+	// if not set failed
 
 	const onSubmit = async (formData: IReviewForm) => {
 		try {
@@ -74,7 +91,7 @@ export const ReviewForm = ({
 				<div className={styles.rating}>
 					<span>
 						Оценка:
-						<Controller
+						<Controller  // items with state-value must be wrapped in the controller
 							name="rating"
 							control={control}
 							rules={{
@@ -89,7 +106,7 @@ export const ReviewForm = ({
 									isEditable
 									setRating={field.onChange}
 									ref={field.ref}
-									rating={field.value}
+									rating={field.value}  // take control of the state
 								/>
 							)}
 						/>

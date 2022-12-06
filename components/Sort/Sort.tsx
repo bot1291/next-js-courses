@@ -3,6 +3,8 @@ import styles from './Sort.module.css';
 import cn from 'classnames';
 import SortIcon from './hamburger.svg';
 
+// sort products through sort reducer depend on enums
+
 export const Sort = ({ setSort, sort, className, ...props }: SortProps) => {
 
 	return (

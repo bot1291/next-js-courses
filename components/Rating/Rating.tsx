@@ -5,6 +5,10 @@ import StarIcon from './star.svg';
 import { KeyboardEvent, useEffect, useRef, useState } from 'react';
 import { ForwardedRef, forwardRef } from 'react';
 
+// rating component can be editable or not
+// to editable component we can set rating by myself
+// wrap in the ref to be able to get value from state by using react-hook-form
+
 export const Rating = forwardRef(
 	(
 		{
@@ -17,9 +21,12 @@ export const Rating = forwardRef(
 		}: RatingProps,
 		ref: ForwardedRef<HTMLDivElement>
 	) => {
+
+		// set explicit count of rating
+
 		const [ratingArray, setRatingArray] = useState<JSX.Element[]>(
 			new Array(5).fill(<></>)
-		);
+		);	
 		const ratingArrayRef = useRef<(HTMLSpanElement | null)[]>([]);
 
 		const computeFocus = (rate: number, index: number): number => {
@@ -40,9 +47,9 @@ export const Rating = forwardRef(
 				(_rate: JSX.Element, index: number) => {
 					return (
 						<span
-							onMouseEnter={() => changeDisplay(index + 1)}
+							onMouseEnter={() => changeDisplay(index + 1)} // when we move mouse on the star it becomes rerender count of painted stars
 							onMouseLeave={() => changeDisplay(rating)}
-							onClick={() => onclick(index + 1)}
+							onClick={() => onclick(index + 1)}  
 							className={cn(styles.star, {
 								[styles.filled]: index < currentRating,
 								[styles.editable]: isEditable,
@@ -112,5 +119,7 @@ export const Rating = forwardRef(
 		);
 	}
 );
+
+// wrapped in the ref component should has displayName for react devtools
 
 Rating.displayName = 'Rating';

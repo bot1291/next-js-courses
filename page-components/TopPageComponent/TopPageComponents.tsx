@@ -6,6 +6,10 @@ import { SortEnum } from '../../components/Sort/Sort.props';
 import { useEffect, useReducer } from 'react';
 import { sortReducer } from './sort.reducer';
 
+// here is a template page for [alias] pages with all products for current category
+// use reducer for sort products by rating or price 
+// also use for reload page to get current category products when we go through courses
+
 export const TopPageComponent = ({
 	firstCategory,
 	page,
@@ -17,7 +21,7 @@ export const TopPageComponent = ({
 	);
 
 	useEffect(() => {
-		dispatchSort({ type: SortEnum.Reaload, payload: products });
+		dispatchSort({ type: SortEnum.Reload, payload: products });
 	}, [products]);
 
 	const setSort = (sort: SortEnum) => {

@@ -3,6 +3,8 @@ import styles from './Input.module.css';
 import cn from 'classnames';
 import { ForwardedRef, forwardRef } from 'react';
 
+// wrap in the ref to be able to get value from input by using react-hook-form
+
 export const Input = forwardRef(
 	(
 		{ error, className, ...props }: InputProps,
@@ -24,5 +26,7 @@ export const Input = forwardRef(
 		);
 	}
 );
+
+// wrapped in the ref component should has displayName for react devtools
 
 Input.displayName = 'Input';

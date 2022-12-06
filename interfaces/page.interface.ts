@@ -1,3 +1,6 @@
+// this enum contains all second categories
+// it is using for check on what [type] alias we take place or to get data from backend
+
 export enum TopLevelCategory {
 	Courses,
 	Services,

@@ -1,3 +1,5 @@
+// add domains to be able to use them in source for images
+
 export const images = {
 	remotePatterns: [
 		{
@@ -7,6 +9,8 @@ export const images = {
 		},
 	],
 };
+
+// add svgr module to be able to add svg format as a component
 
 export function webpack(config) {
 	config.module.rules.push({

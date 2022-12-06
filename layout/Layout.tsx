@@ -19,10 +19,14 @@ import { Up } from '../components';
 import cn from 'classnames';
 import { motion } from 'framer-motion';
 
+// here is a template of layout for all pages on the site
+
 const Layout = ({ children }: LayoutProps) => {
 	const { isOpened } = useContext(AppContext);
 	const [isDisplayed, setIsDisplayed] = useState<boolean>(false);
 	const bodyRef = useRef<HTMLDivElement>(null);
+
+	// can help easily reach main content when using tab
 
 	const skipContentAction = (key: KeyboardEvent<HTMLAnchorElement>) => {
 		if (key.code === 'Space' || key.code === 'Enter') {
@@ -53,7 +57,7 @@ const Layout = ({ children }: LayoutProps) => {
 			className={cn(styles.wrapper)}
 		>
 			<a
-				onFocus={() => setIsDisplayed(true)}
+				onFocus={() => setIsDisplayed(true)} // can help easily reach main content when using tab
 				tabIndex={0}
 				className={cn(styles.skipLink, {
 					[styles.displayed]: isDisplayed,
@@ -72,6 +76,8 @@ const Layout = ({ children }: LayoutProps) => {
 		</motion.div>
 	);
 };
+
+// create layout component with context 
 
 export const withLayout = <T extends Record<string, unknown> & IAppContext>(
 	Component: FunctionComponent<T>

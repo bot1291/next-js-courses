@@ -1,10 +1,12 @@
 import { SortEnum } from '../../components/Sort/Sort.props';
 import { ProductModel } from '../../interfaces/product.interface';
 
+// here is a reducer which can sort by rating or price or reload page 
+
 export type SortActions =
 	| { type: SortEnum.Price }
 	| { type: SortEnum.Rating }
-	| { type: SortEnum.Reaload; payload: ProductModel[] };
+	| { type: SortEnum.Reload; payload: ProductModel[] };
 
 export interface SortReducerState {
 	sort: SortEnum;
@@ -30,7 +32,7 @@ export const sortReducer = (
 					a.price > b.price ? 1 : -1
 				),
 			};
-		case SortEnum.Reaload:
+		case SortEnum.Reload:
 			return {
 				sort: SortEnum.Rating,
 				products: action.payload,

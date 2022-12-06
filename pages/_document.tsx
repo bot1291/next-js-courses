@@ -7,6 +7,10 @@ import Document, {
 	DocumentInitialProps,
 } from 'next/document';
 
+// create page template for all pages
+// export fonts here, because next.js recommend to export fonts immediately on all pages,
+// dont use it in a single one
+
 export default class MyDocument extends Document {
 	static async getIinitialProps(
 		context: DocumentContext

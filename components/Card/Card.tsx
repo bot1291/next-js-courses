@@ -22,4 +22,6 @@ export const Card = forwardRef(
 	}
 );
 
+// wrapped in the ref component should has displayName for react devtools
+
 Card.displayName = 'Card';

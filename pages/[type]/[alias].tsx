@@ -11,13 +11,16 @@ import { withLayout } from '../../layout/Layout';
 import { TopPageComponent } from '../../page-components';
 import { API } from '../../helpers/api';
 import Head from 'next/head';
-import { Htag, InDevelopment } from '../../components';
+import { InDevelopment } from '../../components';
+
+// create page template for [alias] alias (example ./courses/photoshop, /courses/[alias])
+// and set head params which based on the backend data only for this alias
+// if were not any products drop InDevelopment component
 
 function TopPage({ firstCategory, page, products }: TopPageProps): JSX.Element {
 	if (!page || !products.length) {
 		return <InDevelopment />;
 	}
-
 	return (
 		<>
 			<Head>
@@ -39,7 +42,12 @@ function TopPage({ firstCategory, page, products }: TopPageProps): JSX.Element {
 	);
 }
 
+// wrap all [alias] alias components in the layout and then export it
+
 export default withLayout(TopPage);
+
+// get all possible paths to current alias
+// and drop 404 error page for all different paths that dont math with array paths
 
 export const getStaticPaths: GetStaticPaths = async () => {
 	let paths: string[] = [];
@@ -59,6 +67,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 		paths = paths.concat(
 			menu.flatMap((s) => s.pages.map((p) => `/${m.route}/${p.alias}`))
 		);
+
+		// one button add ref to the link params on what next.js drop a error
+		// which say that paths dont match so it is need to add paths with #ref on the end
+
 		paths = paths.concat(
 			menu.flatMap((s) =>
 				s.pages.map((p) => `/${m.route}/${p.alias}#ref`)
@@ -71,6 +83,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
 	};
 };
 
+// here we get data for second level of sidebar which based on the link
+// params get us path to [alias] alias and [type] alias            
+// params we get from getStaticProps as a property
+// also get model for page foundation based on the [alias] which we get from params
+// and also get array of products which based on the page model category
+// we also check whether got data or not or if there were any error if not drop 404 error page
+
 export const getStaticProps: GetStaticProps<TopPageProps> = async ({
 	params,
 }: GetStaticPropsContext<ParsedUrlQuery>) => {
@@ -79,6 +98,9 @@ export const getStaticProps: GetStaticProps<TopPageProps> = async ({
 			notFound: true,
 		};
 	}
+
+	// compare link params with the keys which set before
+	// we also check whether got data or not if not drop 404 error page
 
 	const firstCategoryItem = firstLevelMenu.find(
 		(m) => m.route === params.type

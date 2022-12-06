@@ -1,4 +1,6 @@
-export const API = {
+// all api paths in one place to change them easily
+
+ export const API = {
 	topPage: {
 		find: `${process.env.NEXT_PUBLIC_DOMAIN}/api/top-page/find`,
 		byAlias: {

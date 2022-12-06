@@ -9,6 +9,9 @@ import { useContext } from 'react';
 import { AppContext } from '../../context/app.context';
 import Link from 'next/link';
 
+// header template for layout 
+// it is visible only on mobile version
+
 export const Header = ({ className, ...props }: HeaderProps) => {
 	const { setOpened, isOpened } = useContext(AppContext);
 
@@ -28,6 +31,8 @@ export const Header = ({ className, ...props }: HeaderProps) => {
 		},
 	};
 
+	// slowly paint the button based on how much we scrolled which help us to destination top
+
 	const handleHambButton = () => {
 		if (window.scrollY === 0) {
 			setOpened && setOpened(true);
@@ -42,7 +47,7 @@ export const Header = ({ className, ...props }: HeaderProps) => {
 
 	return (
 		<header className={cn(className, styles.header)} {...props}>
-			<Link href='/'>
+			<Link href="/">
 				<Logo />
 			</Link>
 			<ButtonIcon

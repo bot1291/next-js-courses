@@ -14,6 +14,8 @@ import { Review } from '../Review/Review';
 import { ReviewForm } from '../ReviewForm/ReviewForm';
 import { motion } from 'framer-motion';
 
+// component about all things of current product
+
 const ProductRef = forwardRef(
 	(
 		{ product, className, ...props }: ProductProps,
@@ -180,5 +182,10 @@ const ProductRef = forwardRef(
 	}
 );
 
+// wrapped in the ref component should has displayName for react devtools
+
 ProductRef.displayName = 'Product';
+
+// also wrap in the motion to give control to the framer motion to be able to set any motions
+
 export const Product = motion(ProductRef);

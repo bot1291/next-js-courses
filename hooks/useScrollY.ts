@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+// hook which sat y depend on howe much we scrolled
+
 export const useScrollY = (): number => {
 	const isBrowser = typeof window !== undefined;
 

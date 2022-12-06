@@ -15,6 +15,8 @@ export const Search = ({ className, ...props }: SearchProps) => {
 
 	const { menu, handleSetSearchPages, setOpened } = useContext(AppContext);
 
+	// template check logic
+
 	const searchThroughCourses = (word: string): boolean => {
 		return word
 			.toLocaleLowerCase()
@@ -22,6 +24,8 @@ export const Search = ({ className, ...props }: SearchProps) => {
 			.join('')
 			.includes(search.toLocaleLowerCase().split(' ').join(''));
 	};
+
+	// check logic for search value depend on alias or category by using menu which we get from backend
 
 	const goToSearch = () => {
 		const newPages: PageItem[] = [];
@@ -35,17 +39,31 @@ export const Search = ({ className, ...props }: SearchProps) => {
 				}
 			}
 		}
+
+		// check search value for match if so write matched page in the localStorage
+		// PageItem using for create second level sidebar
+		// set in the data in the localStorage and in the state to get around the error
+		// which happens when we going through pages
+
 		localStorage.pages = JSON.stringify(newPages);
 		handleSetSearchPages && handleSetSearchPages();
+
+		// after submit redirect to search page
+
 		router.push({
 			pathname: '/search',
 			query: {
 				q: search,
 			},
 		});
+
+		// close opened sidebar menu only in the mobile version and reset input value
+
 		setOpened && setOpened(false);
 		setSearch('');
 	};
+
+	// same as above but when we use enter
 
 	const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
 		if (e.key === 'Enter') {

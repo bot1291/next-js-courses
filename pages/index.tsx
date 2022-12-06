@@ -26,27 +26,34 @@ function Home({ menu }: HomeProps): JSX.Element {
 	);
 }
 
+// wrap current page component in the layout and then export it
+
 export default withLayout(Home);
+
+// get data from backend on server side for sidebar
+// check if there were any error if so drop 404 error page
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
 	const firstCategory = 0;
 
-	const menu: MenuItem[] = await fetch(API.topPage.find, {
-		method: 'POST',
-		body: JSON.stringify({ firstCategory }),
-		headers: {
-			'Content-type': 'application/json; charset=UTF-8',
-		},
-	})
-		.then((response) => response.json())
-		.catch((e: Error) => {
-			console.log(e.message);
-		});
-	return {
-		props: {
-			menu,
-		},
-	};
+	try {
+		const menu: MenuItem[] = await fetch(API.topPage.find, {
+			method: 'POST',
+			body: JSON.stringify({ firstCategory }),
+			headers: {
+				'Content-type': 'application/json; charset=UTF-8',
+			},
+		}).then((response) => response.json());
+		return {
+			props: {
+				menu,
+			},
+		};
+	} catch {
+		return {
+			notFound: true,
+		};
+	}
 };
 
 export interface HomeProps extends Record<string, unknown> {

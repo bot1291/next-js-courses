@@ -5,6 +5,9 @@ import ym from 'react-yandex-metrika';
 import { YMInitializer } from 'react-yandex-metrika';
 import { useEffect } from 'react';
 
+// create head template for all pages
+// also here we can add yandex or different metriks
+
 export default function App({
 	Component,
 	pageProps,
@@ -32,7 +35,7 @@ export default function App({
 			</Head>
 			<YMInitializer
 				accounts={[]}
-				options={{ webvisor: true, defer: true }}
+				options={{ webvisor: true, defer: true }}  // here is a yandex metrika
 				version="2"
 			/>
 			<Component {...pageProps} />

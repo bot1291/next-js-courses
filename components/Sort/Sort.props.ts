@@ -8,5 +8,5 @@ export interface SortProps
 export enum SortEnum {
 	Rating,
 	Price,
-	Reaload,
+	Reload,
 }
