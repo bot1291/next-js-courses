@@ -1,1 +1,92 @@
+# OWL top - site about different courses
+
+Courses app which foundation is based on Next.js
+
 You can see site on this link - https://next-js-courses-ldsaew.vercel.app/
+
+![Alt-текст](./example.png)
+
+
+## Table of Contents
+
++ [Introduction](#Introduction)
++ [Technologies](#Technologies)
++ [License](#License) 
++ [Install](#Install)
++ [Run project](#Run-project)
+
+
+## Introduction
+
+It is my first application created on Next.js. In application you can see a lot of courses in the sphere like web-design or programming or many others. Also you can see how much vacancy exist currently on the hh.ru and payment fork.
+
+
+## Technologies 
+
++ React version: 18
++ Next.js version: 13
++ TypeScript version: 4.9
++ framer-motion version: 7 - to be able to add component motion effect
++ react-hook-form version: 7 - to send data from the form to backend
++ classnames version: 2 - help to add variable classes
++ stylelint version: 14 - set style css format which depends on best practics
++ eslint version: 8
+
+
+## Install
+
+Before run app install it locally using npm
+
+```
+npm i 
+```
+
+
+## Run project
+
+
+### Middleware
+
+ After installing app run next command.
+ 
+```
+npm run prepare
+```
+
+Then create in the .husky\_ folder file 'pre-commit' and add code below.
+
+```
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+npm run stylelint
+```
+This middleware running stylelint for us after we commit.
+
+
+### Development 
+
+```
+npm run dev
+```
+
+
+### Production 
+
+```
+npm run build
+npm start
+```
+
+Or
+
+```
+npm run build
+npm run export
+```
+And then add files from the folder out at any hosting
+
+
+## License
+
+This project is licensed under the terms of the MIT license.
