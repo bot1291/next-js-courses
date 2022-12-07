@@ -49,11 +49,18 @@ export const Rating = forwardRef(
 						<span
 							onMouseEnter={() => changeDisplay(index + 1)} // when we move mouse on the star it becomes rerender count of painted stars
 							onMouseLeave={() => changeDisplay(rating)}
-							onClick={() => onclick(index + 1)}  
+							onClick={() => onclick(index + 1)}
 							className={cn(styles.star, {
+
+								// count of painted stars depends on how much rating we set 
+								// and then matched with current star index
+
 								[styles.filled]: index < currentRating,
 								[styles.editable]: isEditable,
 							})}
+
+							// these all set for correct tabulation through stars
+
 							key={index}
 							tabIndex={computeFocus(rating, index)}
 							onKeyDown={handleKey}
@@ -78,6 +85,9 @@ export const Rating = forwardRef(
 				setRating(rate);
 			}
 		};
+
+
+		// set handler to be able to using tabulation through arrows on keyboard 
 
 		const handleKey = (key: KeyboardEvent<HTMLDivElement>) => {
 			if (!isEditable || !setRating) {

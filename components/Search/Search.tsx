@@ -25,7 +25,7 @@ export const Search = ({ className, ...props }: SearchProps) => {
 			.includes(search.toLocaleLowerCase().split(' ').join(''));
 	};
 
-	// check logic for search value depend on alias or category by using menu which we get from backend
+	// check logic for search value depend on alias and category by using menu which we get from backend
 
 	const goToSearch = () => {
 		const newPages: PageItem[] = [];

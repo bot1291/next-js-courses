@@ -19,7 +19,8 @@ export const ReviewForm = ({
 	className,
 	...props
 }: ReviewFormProps) => {
-	// register give as able to handle inputs to static
+
+	// register give as able to handle static inputs
 	// control to flex things (means value set by using state)
 
 	const {
@@ -67,11 +68,13 @@ export const ReviewForm = ({
 		}
 	};
 
+	// handle form using handleSubmit which we get from react-hook-form
+
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
 			<div className={cn(className, styles.reviewForm)} {...props}>
 				<Input
-					error={errors.name}
+					error={errors.name}  // in static components we just need to add register withc params and error handler if we need
 					{...register('name', {
 						required: { value: true, message: 'Заполните имя' },
 					})}
@@ -91,7 +94,7 @@ export const ReviewForm = ({
 				<div className={styles.rating}>
 					<span>
 						Оценка:
-						<Controller  // items with state-value must be wrapped in the controller
+						<Controller // items with state-value must be wrapped in the controller
 							name="rating"
 							control={control}
 							rules={{
@@ -106,7 +109,7 @@ export const ReviewForm = ({
 									isEditable
 									setRating={field.onChange}
 									ref={field.ref}
-									rating={field.value}  // take control of the state
+									rating={field.value} // take control of the state
 								/>
 							)}
 						/>
