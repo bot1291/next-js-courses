@@ -84,7 +84,7 @@ Or
 npm run build
 npm run export
 ```
-And then add files from the folder out at any hosting
+And then add files from the folder 'out' at any hosting.
 
 
 ## License
