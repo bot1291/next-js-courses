@@ -38,7 +38,7 @@ It is my first application created on Next.js. In application you can see a lot 
 
 ## Install
 
-Before run app install it locally using npm
+Before running app install it locally using npm
 
 ```
 npm i 
