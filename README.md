@@ -11,9 +11,12 @@ You can see site on this link - https://next-js-courses-ldsaew.vercel.app/
 
 + [Introduction](#Introduction)
 + [Technologies](#Technologies)
-+ [License](#License) 
 + [Install](#Install)
 + [Run project](#Run-project)
+  + [Middleware](#Middleware)
+  + [Development](#Development)
+  + [Production](#Production)
++ [License](#License) 
 
 
 ## Introduction
