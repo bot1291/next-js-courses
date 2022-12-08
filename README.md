@@ -47,26 +47,6 @@ npm i
 
 ## Run project
 
-
-### Middleware
-
- After installing app run next command.
- 
-```
-npm run prepare
-```
-
-Then create in the .husky\_ folder file 'pre-commit' and add code below.
-
-```
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
-npm run stylelint
-```
-This middleware running stylelint for us after we commit.
-
-
 ### Development 
 
 ```
@@ -87,6 +67,7 @@ Or
 npm run build
 npm run export
 ```
+
 And then add files from the folder 'out' at any hosting.
 
 
