@@ -11,9 +11,12 @@ You can see site on this link - https://next-js-courses-ldsaew.vercel.app/
 
 + [Introduction](#Introduction)
 + [Technologies](#Technologies)
-+ [License](#License) 
 + [Install](#Install)
 + [Run project](#Run-project)
+  + [Middleware](#Middleware)
+  + [Development](#Development)
+  + [Production](#Production)
++ [License](#License) 
 
 
 ## Introduction
@@ -35,7 +38,7 @@ It is my first application created on Next.js. In application you can see a lot 
 
 ## Install
 
-Before run app install it locally using npm
+Before running app install it locally using npm
 
 ```
 npm i 
@@ -81,7 +84,8 @@ Or
 npm run build
 npm run export
 ```
-And then add files from the folder out at any hosting
+
+And then add files from the folder 'out' at any hosting.
 
 
 ## License
