@@ -13,7 +13,7 @@ import { sortReducer } from './sort.reducer';
 export const TopPageComponent = ({
 	firstCategory,
 	page,
-	products,
+	products, 
 }: TopPageComponentProps) => {
 	const [{ products: sortedProducts, sort }, dispatchSort] = useReducer(
 		sortReducer,

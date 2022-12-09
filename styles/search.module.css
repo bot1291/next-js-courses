@@ -5,24 +5,26 @@
 
 .categoriesBlock {
 	gap: 25px;
+
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-column: start / end;
 }
 
 .complitation {
-	font-weight: 600;
 	margin-bottom: 15px;
+
+	font-weight: 600;
 	grid-column: start;
 }
 
 .countPages {
 	align-self: center;
-	justify-self: flex-start;
-	margin-left: 15px;
-	margin-bottom: 10px;
-}
 
+	margin-bottom: 10px;
+	margin-left: 15px;
+	justify-self: flex-start;
+}
 
 @media screen and (max-width: 1110px) {
 	.categoriesBlock {

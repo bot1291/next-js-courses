@@ -50,15 +50,12 @@ npm i
  After installing app run next command.
  
 ```
-npm run prepare
+npx husky-init
 ```
 
-Then create in the .husky\_ folder file 'pre-commit' and add code below.
+Then add commands by using next path - ./husky/pre-commit.
 
 ```
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
 npm run stylelint
 ```
 This middleware running stylelint for us after we commit.

@@ -44,7 +44,7 @@ export default withLayout(Search);
 
 export const getStaticProps: GetStaticProps<SeacrhProps> = async () => {
 	const firstCategory = 0;
-
+	const maslo = 0;
 	try {
 		const menu: MenuItem[] = await fetch(API.topPage.find, {
 			method: 'POST',

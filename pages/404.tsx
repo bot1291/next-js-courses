@@ -34,6 +34,7 @@ export default withLayout(Error404);
 export const getStaticProps: GetStaticProps<Error404Props> = async () => {
 	const firstCategory = 0;
 
+	
 	try {
 		const menu: MenuItem[] = await fetch(API.topPage.find, {
 			method: 'POST',

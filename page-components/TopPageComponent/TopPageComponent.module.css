@@ -1,18 +1,18 @@
 .title {
 	display: grid;
-	grid-template-columns: auto 1fr auto;
-
 	align-items: baseline;
-	justify-items: left;
-	gap: 20px;
 
 	margin-bottom: 20px;
+	grid-template-columns: auto 1fr auto;
+	gap: 20px;
+	justify-items: left;
 }
 
 .hhtitle {
 	display: grid;
 	align-content: center;
 	align-items: baseline;
+
 	grid-template-columns: auto 1fr;
 	justify-items: left;
 	gap: 20px;

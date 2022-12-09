@@ -7,12 +7,13 @@
 }
 
 .wrapper {
-	text-align: center;
 	display: grid;
 
 	max-width: 1510px;
 	margin: 0 auto;
 	padding: 25px 30px;
+
+	text-align: center;
 
 	color: var(--white);
 
