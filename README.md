@@ -21,7 +21,7 @@ You can see site on this link - https://next-js-courses-ldsaew.vercel.app/
 
 ## Introduction
 
-It is my first application created on Next.js. In application you can see a lot of courses in the sphere like web-design or programming or many others. Also you can see how much vacancy exist currently on the hh.ru and payment fork.
+In application you can see a lot of courses in the sphere like web-design or programming or many others. Also you can see how much vacancy exist currently on the hh.ru and payment fork.
 
 
 ## Technologies 
